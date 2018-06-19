@@ -1,0 +1,1503 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"namegen",
+				"name_gender_age\tstatement"
+			],
+			[
+				"name",
+				"name_gender_age"
+			],
+			[
+				"bigqu",
+				"bigquery_client"
+			],
+			[
+				"from",
+				"from_service_account_json\tfunction"
+			],
+			[
+				"read",
+				"read_csv\tfunction"
+			],
+			[
+				"output",
+				"output_dir\tstatement"
+			],
+			[
+				"outp",
+				"output_dir\tstatement"
+			],
+			[
+				"legend",
+				"_legend\tstatement"
+			],
+			[
+				"Y_t",
+				"Y_test\tstatement"
+			],
+			[
+				"tree",
+				"tree_model\tstatement"
+			],
+			[
+				"T",
+				"tree\tmodule"
+			],
+			[
+				"test",
+				"test_indices\tstatement"
+			],
+			[
+				"train",
+				"train_indices\tstatement"
+			],
+			[
+				"ran",
+				"random_state\tparam"
+			],
+			[
+				"normali",
+				"normalized_y"
+			],
+			[
+				"norma",
+				"normalized_y\tstatement"
+			],
+			[
+				"sta",
+				"StandardScaler\tclass"
+			],
+			[
+				"plot",
+				"plotters\tmodule"
+			],
+			[
+				"cum",
+				"cum_variance_explained\tfunction"
+			],
+			[
+				"point",
+				"points_worst"
+			],
+			[
+				"concavi",
+				"concavity_mean"
+			],
+			[
+				"fit",
+				"fit_transform\tfunction"
+			],
+			[
+				"expl",
+				"explained_variance_ratio_\tstatement"
+			],
+			[
+				"c",
+				"components_\tstatement"
+			],
+			[
+				"diag",
+				"diag_kind\tparam"
+			],
+			[
+				"make",
+				"makedirs\tfunction"
+			],
+			[
+				"fig",
+				"figsize"
+			],
+			[
+				"conc",
+				"concave"
+			],
+			[
+				"con",
+				"concave"
+			],
+			[
+				"fea",
+				"feature1"
+			],
+			[
+				"feature",
+				"feature2\tparam"
+			],
+			[
+				"save",
+				"savefig\tfunction"
+			],
+			[
+				"mak",
+				"makedirs\tfunction"
+			],
+			[
+				"kd",
+				"bivariate_kde\tfunction"
+			],
+			[
+				"conca",
+				"concavity_mean"
+			],
+			[
+				"color",
+				"color_palette\tfunction"
+			],
+			[
+				"shade",
+				"shade_lowest\tparam"
+			],
+			[
+				"di",
+				"diagnosis"
+			],
+			[
+				"melt",
+				"melted"
+			],
+			[
+				"set",
+				"set_style\tfunction"
+			],
+			[
+				"out",
+				"output_dir\tstatement"
+			],
+			[
+				"ma",
+				"makedirs\tfunction"
+			],
+			[
+				"dia",
+				"diag_map"
+			],
+			[
+				"down",
+				"download_path"
+			],
+			[
+				"tick",
+				"tickarray\tstatement"
+			],
+			[
+				"char",
+				"chart_title\tstatement"
+			],
+			[
+				"cha",
+				"chart_title"
+			],
+			[
+				"M",
+				"MonthName"
+			],
+			[
+				"lin",
+				"linspace\tfunction"
+			],
+			[
+				"Col",
+				"Columbia"
+			],
+			[
+				"me",
+				"metric_name\tparam"
+			],
+			[
+				"gender",
+				"gender_list\tstatement"
+			],
+			[
+				"geocode",
+				"geocode_result\tstatement"
+			],
+			[
+				"chro",
+				"choropleth_helper\tmodule"
+			],
+			[
+				"try",
+				"try\tTry/Except"
+			],
+			[
+				"oput",
+				"output_path"
+			],
+			[
+				"all",
+				"all_genders"
+			],
+			[
+				"st",
+				"state_df"
+			],
+			[
+				"sg",
+				"sg_df"
+			],
+			[
+				"age",
+				"age_agg_df"
+			],
+			[
+				"sa",
+				"sga_df"
+			],
+			[
+				"stat",
+				"state_gender_df"
+			],
+			[
+				"state",
+				"state_gender_df\tstatement"
+			],
+			[
+				"tot",
+				"tot_revenue\tstatement"
+			],
+			[
+				"bin",
+				"bin_search\tfunction"
+			],
+			[
+				"assert",
+				"assertEqual\tfunction"
+			],
+			[
+				"row",
+				"row_array\tstatement"
+			],
+			[
+				"return",
+				"return_array\tstatement"
+			],
+			[
+				"retu",
+				"return_array\tstatement"
+			],
+			[
+				"ass",
+				"assertEqual\tfunction"
+			],
+			[
+				"as",
+				"assertIn\tfunction"
+			],
+			[
+				"tup",
+				"tup_arr\tstatement"
+			],
+			[
+				"str",
+				"str_arr\tstatement"
+			],
+			[
+				"pr",
+				"practice_problems\tmodule"
+			],
+			[
+				"up",
+				"up_left_sum\tstatement"
+			],
+			[
+				"sum",
+				"sum_prod_diags"
+			],
+			[
+				"find",
+				"findOdd\tfunction"
+			],
+			[
+				"changed",
+				"change_description"
+			],
+			[
+				"sor",
+				"sorted_jobs\tstatement"
+			],
+			[
+				"su",
+				"sudokuValidator"
+			],
+			[
+				"get",
+				"get_best_word\tfunction"
+			],
+			[
+				"his",
+				"hist_by_metric\tfunction"
+			],
+			[
+				"print",
+				"print\tkeyword"
+			],
+			[
+				"left",
+				"left_df"
+			],
+			[
+				"hea",
+				"heatplot"
+			],
+			[
+				"if",
+				"ifmain\tif __name__ == '__main__'"
+			],
+			[
+				"br",
+				"browser"
+			],
+			[
+				"string",
+				"stringToByte\tfunction"
+			],
+			[
+				"byte",
+				"byteToBit"
+			],
+			[
+				"ladd",
+				"ladderLength"
+			],
+			[
+				"next",
+				"nextlevel"
+			],
+			[
+				"net",
+				"nextlevel"
+			],
+			[
+				"lInd",
+				"l1Ind"
+			],
+			[
+				"pow",
+				"powerOfTwo\tfunction"
+			],
+			[
+				"coo",
+				"greedCookies"
+			],
+			[
+				"count",
+				"countDict"
+			],
+			[
+				"min",
+				"minInd"
+			],
+			[
+				"max",
+				"maxNum"
+			],
+			[
+				"ladderClimb",
+				"ladderClimbRecursive"
+			],
+			[
+				"la",
+				"ladderClimb"
+			],
+			[
+				"binar",
+				"binarySearchRotated"
+			],
+			[
+				"let",
+				"letter\tforstmt"
+			],
+			[
+				"letter",
+				"letterDict"
+			],
+			[
+				"sub",
+				"substring_count"
+			],
+			[
+				"group",
+				"group_dishes"
+			],
+			[
+				"oncei",
+				"once_integer_sorted"
+			],
+			[
+				"filter",
+				"filter_df"
+			],
+			[
+				"Non",
+				"Non_Payment"
+			],
+			[
+				"evi",
+				"evic_reasons"
+			],
+			[
+				"evc",
+				"evic_array"
+			],
+			[
+				"evic",
+				"evic_matrix"
+			],
+			[
+				"n",
+				"Neighborhood"
+			],
+			[
+				"reason",
+				"reason_array"
+			],
+			[
+				"reas",
+				"reason_array"
+			],
+			[
+				"sorted",
+				"sorted_cont"
+			],
+			[
+				"tpos",
+				"t_pos_words"
+			],
+			[
+				"can",
+				"candidate\tparam"
+			],
+			[
+				"word",
+				"word_index"
+			],
+			[
+				"sentei",
+				"sentiment_words"
+			],
+			[
+				"key",
+				"keywords"
+			],
+			[
+				"positi",
+				"positive-words.txt"
+			],
+			[
+				"tf_d",
+				"tf_idf\t(tfidf_helper.py)"
+			],
+			[
+				"senti",
+				"sentiment_chart"
+			],
+			[
+				"hpos",
+				"h_pos_words"
+			],
+			[
+				"candi",
+				"candidate_text"
+			],
+			[
+				"cand",
+				"candidate_text"
+			],
+			[
+				"tneg",
+				"t_neg_words"
+			],
+			[
+				"hpo",
+				"h_pos_words"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport datetime\nimport plotting\n\nyear = datetime.datetime.now().year\ndf = pd.read_csv('names.csv')\ndf.drop('Unnamed: 0', inplace = True, axis = 1)\ndf['age'] = year - df['year']\ndf['decade'] = 1900 + (df['year'] - (df['year']//100 * 100))//10 * 10\ngender_map = {'M': 'Male', 'F': 'Female'}\n\n\n\nset_size = 20\nagg_gender = df.groupby('gender').count()\nname_gender = df.groupby(['name', 'gender']).sum()\nname_gender = name_gender.reset_index()\ntop_male_df = name_gender[name_gender['gender'] == 'M'].sort_values('number', ascending = False).head(set_size)\ntop_female_df = name_gender[name_gender['gender'] == 'F'].sort_values('number', ascending = False).head(set_size)\n\ntop_male_names = top_male_df['name']\ntop_female_names = top_female_df['name']\nprint(top_male_names)\n\nname_gender_age = df.groupby(['name', 'gender', 'year']).sum()\nname_gender_age = name_gender_age.reset_index()\ntop_male_age = name_gender_age[(name_gender_age['name'].isin(top_male_names)) & (name_gender_age['gender'] == 'M')]\ntop_female_age = name_gender_age[(name_gender_age['name'].isin(top_female_names)) & (name_gender_age['gender'] == 'F')]\nprint(top_male_age)\n\ntop_male_decade = top_male_age.groupby(['decade','name']).sum()\ntop_female_decade = top_female_age.groupby(['decade','name']).sum()\ntop_male_decade = top_male_decade.reset_index()\ntop_female_decade = top_female_decade.reset_index()\n\nprint(len(top_male_decade['name'].unique()))\n#plotting.heatmapper(top_male_decade, '/output/', save = False)",
+			"file": "USA_Names/USA_Names_EDA.py",
+			"file_size": 1568,
+			"file_write_time": 131738586280000000,
+			"settings":
+			{
+				"buffer_size": 1547,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "USA_Names/plotting.py",
+			"settings":
+			{
+				"buffer_size": 580,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "import seaborn as sns"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 384.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"lintin",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"git co",
+				"Git: Commit"
+			],
+			[
+				"git diff",
+				"Git: Diff All Files"
+			],
+			[
+				"git add",
+				"Git: Add All"
+			],
+			[
+				"git push",
+				"Git: Push"
+			],
+			[
+				"add all",
+				"Git: Add All"
+			],
+			[
+				"disl",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"lint",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"git ad",
+				"Git: Add All"
+			],
+			[
+				"git di",
+				"Git: Diff All Files"
+			],
+			[
+				"git add a",
+				"Git: Add All"
+			],
+			[
+				"linti",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"git dis",
+				"Git: Diff Staged Files"
+			],
+			[
+				"dis li",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"git add al",
+				"Git: Add All"
+			],
+			[
+				"git de",
+				"Git: Delete Branch"
+			],
+			[
+				"git change",
+				"Git: Change Branch"
+			],
+			[
+				"git delete",
+				"Git: Delete Branch"
+			],
+			[
+				"git mer",
+				"Git: Merge Branch"
+			],
+			[
+				"change",
+				"Git: Change Branch"
+			],
+			[
+				"git com",
+				"Git: Commit"
+			],
+			[
+				"git bran",
+				"Git: New Branch"
+			],
+			[
+				"git merge",
+				"Git: Merge Branch"
+			],
+			[
+				"dis",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"git branch",
+				"Git: New Branch"
+			],
+			[
+				"disa",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"git ada",
+				"Git: Add All"
+			],
+			[
+				"dis lint",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"git ig",
+				"Gitignore: New gitignore"
+			],
+			[
+				"ignore",
+				"Gitignore: New gitignore"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"git resert",
+				"Git: Reset (unstage) Current File"
+			],
+			[
+				"git ignore",
+				"Git: Update Project Ignored Files"
+			],
+			[
+				"git un",
+				"Git: Reset (unstage) All"
+			],
+			[
+				"git unstance",
+				"Git: Reset (unstage) Current File"
+			],
+			[
+				"git coo",
+				"GitGutter: Compare Against Origin"
+			],
+			[
+				"open re",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"DIS ",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"git status",
+				"Git: Status"
+			],
+			[
+				"git dif",
+				"Git: Diff Current File"
+			],
+			[
+				"git pu",
+				"Git: Pull Using Rebase"
+			],
+			[
+				"git stash",
+				"Git: Stash Changes"
+			],
+			[
+				"git rever",
+				"GitGutter: Revert Change to Commit"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"install pack",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"git comm",
+				"Git: Commit"
+			],
+			[
+				"git bra",
+				"Git: New Branch"
+			],
+			[
+				"co",
+				"Git: Commit"
+			],
+			[
+				"add a",
+				"Git: Add All"
+			],
+			[
+				"git unsta",
+				"Git: Reset (unstage) Current File"
+			],
+			[
+				"git update",
+				"Git: Update Project Ignored Files"
+			],
+			[
+				"git ",
+				"Git: Add Current File"
+			],
+			[
+				"git del",
+				"Git: Delete Branch"
+			],
+			[
+				"git dele",
+				"Git: Delete Branch"
+			],
+			[
+				"git cha",
+				"Git: Change Branch"
+			],
+			[
+				"git add cu",
+				"Git: Add Current File"
+			],
+			[
+				"git add c",
+				"Git: Add Current File"
+			],
+			[
+				"lin",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"git new bra",
+				"Git: New Branch"
+			],
+			[
+				"git cahnge",
+				"Git: Change Branch"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove package",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"package control",
+				"Package Control: Remove Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				" git co",
+				"Git: Commit"
+			],
+			[
+				"git fet",
+				"Git: Fetch"
+			],
+			[
+				"git stas",
+				"Git: Stash Apply"
+			],
+			[
+				"diff",
+				"Git: Diff All Files"
+			],
+			[
+				"git fetc",
+				"Git: Fetch"
+			],
+			[
+				"git checkout",
+				"Git: Checkout Current File"
+			],
+			[
+				"git sta",
+				"Git: Stash Apply"
+			],
+			[
+				"gitgutter",
+				"Preferences: GitGutter Settings"
+			],
+			[
+				"add",
+				"Git: Add..."
+			],
+			[
+				"comm",
+				"Git: Commit"
+			],
+			[
+				"gitgu",
+				"GitGutter: Support Info"
+			],
+			[
+				"git",
+				"Git: Add All"
+			],
+			[
+				"ling",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"git c",
+				"Git: Commit"
+			],
+			[
+				"git st",
+				"Git: Status"
+			],
+			[
+				"package",
+				"Package Control: List Packages"
+			],
+			[
+				"pull",
+				"Git: Pull Using Rebase"
+			],
+			[
+				"fet",
+				"Git: Fetch"
+			],
+			[
+				"git remote",
+				"Git: Track Remote Branch"
+			],
+			[
+				"git f",
+				"Git: Fetch"
+			],
+			[
+				"git commit",
+				"Git: Commit"
+			],
+			[
+				"reset",
+				"Git: Reset (unstage) All"
+			],
+			[
+				"git stage",
+				"Git: Diff Staged Files"
+			],
+			[
+				"",
+				"Convert Case: Swap Case"
+			],
+			[
+				"git sat",
+				"Git: Status"
+			],
+			[
+				"disable li",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"git init",
+				"Git: Init"
+			],
+			[
+				"disba",
+				"Package Control: Disable Package"
+			],
+			[
+				"disab",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"disbl",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"cus",
+				"Git: Custom Command"
+			],
+			[
+				"custom",
+				"Git: Custom Command"
+			],
+			[
+				"git custom",
+				"Git: Custom Command"
+			],
+			[
+				"com",
+				"Git: Commit"
+			],
+			[
+				"staged",
+				"Git: Diff Staged Files"
+			],
+			[
+				"git cus",
+				"Git: Custom Command"
+			],
+			[
+				"push",
+				"Git: Push"
+			],
+			[
+				"commi",
+				"Git: Commit"
+			],
+			[
+				"ad",
+				"Git: Add Current File"
+			],
+			[
+				"commit",
+				"Git: Commit"
+			],
+			[
+				"branch",
+				"Git: New Branch"
+			],
+			[
+				"git igno",
+				"Git: Update Project Ignored Files"
+			],
+			[
+				"dis lin",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"git chan",
+				"Git: Change Branch"
+			],
+			[
+				"git stat",
+				"Git: Status"
+			],
+			[
+				"git chekc",
+				"Git: Checkout Current File"
+			],
+			[
+				"revert",
+				"File: Revert"
+			],
+			[
+				"gs",
+				"Git: Status"
+			],
+			[
+				"change ",
+				"Git: Change Branch"
+			],
+			[
+				"add ",
+				"Git: Add Current File"
+			],
+			[
+				"instl",
+				"Package Control: Install Package"
+			],
+			[
+				"git commi",
+				"Git: Commit"
+			],
+			[
+				"git reb",
+				"Git: Pull Using Rebase"
+			],
+			[
+				"git pull",
+				"Git: Pull"
+			],
+			[
+				"cust",
+				"Git: Custom Command"
+			],
+			[
+				"cu",
+				"Git: Custom Command"
+			],
+			[
+				"c",
+				"Git: Change Branch"
+			],
+			[
+				"git cust",
+				"Git: Custom Command"
+			],
+			[
+				"delete",
+				"Git: Delete Branch"
+			],
+			[
+				"ch",
+				"Git: Change Branch"
+			],
+			[
+				"merge",
+				"Git: Merge Branch"
+			],
+			[
+				"git res",
+				"Git: Reset (unstage) All"
+			]
+		],
+		"width": 424.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles",
+		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles/USA_Names"
+	],
+	"file_history":
+	[
+		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles/USA_Names/test.py",
+		"/Users/jason.wang/Documents/USA_Names_EDA.py",
+		"/Users/jason.wang/Documents/Analytics Projects/Pulse-of-the-Nation/Sept_Analysis.py",
+		"/Users/jason.wang/Documents/Analytics Projects/Pulse-of-the-Nation/output/histograms/Do you believe in ghosts? by Highest level of education.png",
+		"/Users/jason.wang/Documents/Analytics Projects/Pulse-of-the-Nation/Anaylze.py",
+		"/Users/jason.wang/Documents/Analytics Projects/Breast-Cancer-Detection/Analyze.py",
+		"/Users/jason.wang/Documents/Analytics Projects/Breast-Cancer-Detection/visualize.py",
+		"/Users/jason.wang/Documents/Analytics Projects/Breast-Cancer-Detection/predict.py",
+		"/Users/jason.wang/Documents/Analytics Projects/Breast-Cancer-Detection/output/decision_trees/Decision Tree Fold 5",
+		"/Users/jason.wang/Documents/Analytics Projects/Breast-Cancer-Detection/output/decision_trees/Decision Tree Fold 1",
+		"/Users/jason.wang/Documents/Analytics Projects/Breast-Cancer-Detection/output/decision_trees/Decision Tree Fold 2.dot",
+		"/Users/jason.wang/Documents/Analytics Projects/Breast-Cancer-Detection/output/decision_trees/Decision Tree Fold 2",
+		"/Users/jason.wang/Documents/Analytics Projects/Breast-Cancer-Detection/output/pairwiseplots/pairplot+concave points_mean+area_mean.png",
+		"/Users/jason.wang/Documents/Analytics Projects/Breast-Cancer-Detection/plotters.py",
+		"/Users/jason.wang/Documents/Analytics Projects/Breast-Cancer-Detection/README.md",
+		"/Users/jason.wang/Documents/Analytics Projects/Gun-Violence/predict.py",
+		"/Users/jason.wang/Documents/Analytics Projects/Gun-Violence/visualize.py",
+		"/Users/jason.wang/Documents/Analytics Projects/Gun-Violence/visualization.py",
+		"/Users/jason.wang/Documents/Analytics Projects/Gun-Violence/files/directories.txt",
+		"/Users/jason.wang/Documents/Analytics Projects/Gun-Violence/choropleth_analysis.py",
+		"/Users/jason.wang/Documents/Analytics Projects/Gun-Violence/bubbleMap_analysis.py",
+		"/Users/jason.wang/Documents/Analytics Projects/Gun-Violence/py.gitignore",
+		"/Users/jason.wang/Documents/Analytics Projects/Gun-Violence/.git/info/exclude",
+		"/Users/jason.wang/Library/Application Support/Sublime Text 3/Packages/User/Python3.sublime-build",
+		"/Users/jason.wang/Library/Application Support/Sublime Text 3/Packages/Python/Python.sublime-build",
+		"/Users/jason.wang/Documents/Analytics Projects/Gun-Violence/visualization.pyc",
+		"/Users/jason.wang/Library/Application Support/Sublime Text 3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/Users/jason.wang/Documents/Analytics Projects/Gun-Violence/bubble_map.py",
+		"/Users/jason.wang/Documents/Analytics Projects/Gun Control/bubbleMap_analysis.py",
+		"/Users/jason.wang/Documents/Analytics Projects/Gun Control/files/GunViolence.csv",
+		"/Users/jason.wang/Documents/Analytics Projects/Gun Control/analysis.py",
+		"/Users/jason.wang/Documents/Analytics Projects/Gun Control/choropleth_helper.py",
+		"/Users/jason.wang/Documents/Analytics Projects/Gun Control/test.py",
+		"/Users/jason.wang/Documents/Analytics Projects/Gun Control/files/directories.txt",
+		"/Users/jason.wang/Documents/Analytics Projects/Gun Control/zipcode_helper.py",
+		"/Users/jason.wang/Library/Application Support/Sublime Text 3/Packages/User/Anaconda.sublime-settings",
+		"/Users/jason.wang/Downloads/Untitled.py",
+		"/Users/jason.wang/Documents/Analytics Projects/Gun Control/files/state_gender_age.txt",
+		"/Users/jason.wang/Documents/Analytics Projects/Hurricane Harvey Tweets/Harvey_Tweets/tweet_analysis.py",
+		"/Users/jason.wang/Documents/packaging_log.py",
+		"/Users/jason.wang/Desktop/chipotle.tsv",
+		"/Users/jason.wang/Desktop/chipotle.py",
+		"/Users/jason.wang/Desktop/pandas_practice.py",
+		"/Users/jason.wang/Documents/Analytics Projects/Speed Dating/EDA.py",
+		"/Users/jason.wang/Desktop/test.py",
+		"/Users/jason.wang/Downloads/sia-gpu-miner-v1.1.0-linux64/README.md",
+		"/Users/jason.wang/Desktop/dcr.py",
+		"/Volumes/Encrypted/Crypto backup/Gatehub_key.txt",
+		"/Volumes/Encrypted/Crypto backup/Coinbase_secret_seed.txt",
+		"/Volumes/Encrypted 2/Crypto/MyEtherWallet.txt",
+		"/Volumes/Encrypted 2/Crypto/Siacoin.txt",
+		"/Volumes/Encrypted/Crypto/Siacoin.txt",
+		"/Volumes/Encrypted/Crypto/MyEtherWallet.txt",
+		"/Users/jason.wang/Desktop/practice_problems_unit.py",
+		"/Users/jason.wang/Desktop/practice_problems.py",
+		"/Users/jason.wang/panda-bot/panda-bot.rb",
+		"/Users/jason.wang/panda-bot/panda_review.rb",
+		"/Users/jason.wang/panda-api/app/controllers/reviews_controller.rb",
+		"/Users/jason.wang/panda-bot/panda_api/review_api.rb",
+		"/Users/jason.wang/panda-api/app/models/review.rb",
+		"/Users/jason.wang/Desktop/practice_problems.txt",
+		"/Users/jason.wang/panda-bot/help/rev-help.md",
+		"/Users/jason.wang/panda-bot/panda_api/developer_api.rb",
+		"/Users/jason.wang/Documents/CRYPTO/NEM Private.txt",
+		"/Users/jason.wang/panda-api/dev-setup/dev_zshrc.sh",
+		"/Users/jason.wang/Documents/Analytics Projects/HR Satisfaction/analysis.py",
+		"/Users/jason.wang/Documents/Analytics Projects/HR Satisfaction/.DS_Store",
+		"/Users/jason.wang/Documents/Analytics Projects/HR Satisfaction/HR_Satisfaction.sublime-project",
+		"/Users/jason.wang/Documents/Analytics Projects/SF Eviction/eviction.py",
+		"/Users/jason.wang/Desktop/linkedin.py",
+		"/Users/jason.wang/Desktop/monopoly.py",
+		"/Users/jason.wang/Documents/Python Projects/SF Eviction/eviction.py",
+		"/opt/vagrant/embedded/gems/gems/vagrant-1.8.6/contrib/st/Ruby.sublime-settings",
+		"/Users/jason.wang/Documents/Python Projects/SF/eviction.py",
+		"/Users/jason.wang/Documents/Python Projects/Presidential Primary Debates/debate.py",
+		"/Users/jason.wang/Documents/Python Projects/SF/Eviction_Notices.csv",
+		"/Users/jason.wang/Documents/Python Projects/Pokemon Go/poke.py",
+		"/Users/jason.wang/Documents/Python Projects/Pokemon Go/.git/info/exclude",
+		"/Users/jason.wang/Documents/Python Projects/Pokemon Go/pokemonGO.sublime-project",
+		"/untitled",
+		"/Users/jason.wang/Documents/Python Projects/Presidential Primary Debates/Clinton,min10,max75.png",
+		"/Users/jason.wang/Documents/Python Projects/Presidential Primary Debates/Trump,min10,max75.png",
+		"/Users/jason.wang/Documents/Python Projects/Presidential Primary Debates/Trump,min10,max500.png",
+		"/Users/jason.wang/Documents/Python Projects/Presidential Primary Debates/Clinton,min10,max500.png",
+		"/Users/jason.wang/Documents/Python Projects/Presidential Primary Debates/figure_1.png",
+		"/Users/jason.wang/Documents/Python Projects/Presidential Primary Debates/tfidf_helper.py",
+		"/Users/jason.wang/Documents/Python Projects/Presidential Primary Debates/positive-words.txt",
+		"/Users/jason.wang/Documents/Python Projects/Presidential Primary Debates/test.txt",
+		"/Users/jason.wang/Documents/Python Projects/Presidential Primary Debates/2-faced",
+		"/Users/jason.wang/Documents/Python Projects/Presidential Primary Debates/negative-words.txt",
+		"/Users/jason.wang/Documents/Python Projects/Presidential Primary Debates/primary_debates_cleaned.csv",
+		"/Users/jason.wang/Desktop/Crime Analysis/crime.py",
+		"/Users/jason.wang/Desktop/Python Practice/quandlData.py",
+		"/Users/jason.wang/Desktop/Python Practice/practice.py",
+		"/Users/jason.wang/Desktop/Python Practice/fifty_states.pickle",
+		"/Users/jason.wang/Desktop/throwaway",
+		"/Users/jason.wang/Library/Application Support/Sublime Text 3/Packages/User/testPython",
+		"/Users/jason.wang/Desktop/quandlProject",
+		"/Users/jason.wang/Library/Application Support/Sublime Text 3/Packages/Python/Python.sublime-syntax",
+		"/Users/jason.wang/Downloads/medium_quality.rss"
+	],
+	"find":
+	{
+		"height": 24.0
+	},
+	"find_in_files":
+	{
+		"height": 142.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"top50_female_names",
+			"top50_f3emale_names",
+			"top50_male_names",
+			"top50_female_df",
+			"top50_male_df",
+			"top50_male_age"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "USA_Names/USA_Names_EDA.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1547,
+						"regions":
+						{
+							"bookmarks":
+							{
+								"flags": 144,
+								"icon": "bookmark",
+								"regions":
+								[
+								],
+								"scope": "bookmarks"
+							}
+						},
+						"selection":
+						[
+							[
+								360,
+								360
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - comment - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "USA_Names/plotting.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 580,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								566,
+								566
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - comment - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"auto_name": "import seaborn as sns",
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 42.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 220.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 128.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/Python3.sublime-build",
+	"project": "EDA.sublime-project",
+	"replace":
+	{
+		"height": 44.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"pokemonGO.sublime-project"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Documents/Analytics Projects/Gun-Violence/Breast-Cancer-Detection.sublime-project"
+			],
+			[
+				"gun",
+				"~/Documents/Analytics Projects/Gun-Violence/gun_control.sublime-project"
+			],
+			[
+				"panda",
+				"~/panda-api/panda.sublime-workspace"
+			],
+			[
+				"crim",
+				"~/Desktop/Crime Analysis/crime_analysis.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 367.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"calcTransform"
+			]
+		],
+		"width": 400.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 293.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
