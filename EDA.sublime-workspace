@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"years",
+				"year_test\tstatement"
+			],
+			[
 				"namegen",
 				"name_gender_age\tstatement"
 			],
@@ -510,35 +514,30 @@
 			[
 				"tneg",
 				"t_neg_words"
-			],
-			[
-				"hpo",
-				"h_pos_words"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"contents": "import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport datetime\nimport plotting\n\nyear = datetime.datetime.now().year\ndf = pd.read_csv('names.csv')\ndf.drop('Unnamed: 0', inplace = True, axis = 1)\ndf['age'] = year - df['year']\ndf['decade'] = 1900 + (df['year'] - (df['year']//100 * 100))//10 * 10\ngender_map = {'M': 'Male', 'F': 'Female'}\n\n\n\nset_size = 20\nagg_gender = df.groupby('gender').count()\nname_gender = df.groupby(['name', 'gender']).sum()\nname_gender = name_gender.reset_index()\ntop_male_df = name_gender[name_gender['gender'] == 'M'].sort_values('number', ascending = False).head(set_size)\ntop_female_df = name_gender[name_gender['gender'] == 'F'].sort_values('number', ascending = False).head(set_size)\n\ntop_male_names = top_male_df['name']\ntop_female_names = top_female_df['name']\nprint(top_male_names)\n\nname_gender_age = df.groupby(['name', 'gender', 'year']).sum()\nname_gender_age = name_gender_age.reset_index()\ntop_male_age = name_gender_age[(name_gender_age['name'].isin(top_male_names)) & (name_gender_age['gender'] == 'M')]\ntop_female_age = name_gender_age[(name_gender_age['name'].isin(top_female_names)) & (name_gender_age['gender'] == 'F')]\nprint(top_male_age)\n\ntop_male_decade = top_male_age.groupby(['decade','name']).sum()\ntop_female_decade = top_female_age.groupby(['decade','name']).sum()\ntop_male_decade = top_male_decade.reset_index()\ntop_female_decade = top_female_decade.reset_index()\n\nprint(len(top_male_decade['name'].unique()))\n#plotting.heatmapper(top_male_decade, '/output/', save = False)",
 			"file": "USA_Names/USA_Names_EDA.py",
-			"file_size": 1568,
-			"file_write_time": 131738586280000000,
 			"settings":
 			{
-				"buffer_size": 1547,
+				"buffer_size": 1791,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
+			"contents": "import seaborn as sns\nimport os\nimport matplotlib.pyplot as plt\nimport pandas as pd\nplt.style.use('fivethirtyeight')\n\n\ndef heatmapper(df, gender, output_dir, save = True):\n  result = df.pivot(index = 'name', columns = 'decade', values = 'number')\n  fig = plt.figure(figsize = (15, 9))\n  fig = sns.heatmap(result, cmap = 'YlGnBu')\n  plt.xticks(rotation = 90)\n  plt.title(''.join['Top', len(df['name'].unique()), gender, 'Names'])\n\n  if save:\n    if not os.path.exists(output_dir):\n      os.makedirs(output_dir)\n    plt.savefig(output_dir + ','.join(['PCA Cumulative Variance', str(df.shape[1]) + ' components']))\n  else:\n    plt.show()\n  plt.close()\n\ndef namePopularity(df, name, output_dir, save = True):\n  '''\n  \n  filter_df = df[df['name'] == name]\n  years = pd.DataFrame({'year': sorted(filter_df['year'].unique())})\n\n  males = filter_df[filter_df['gender'] == 'Male'].sort_values('year')\n  females = filter_df[filter_df['gender'] == 'Female'].sort_values('year')\n\n  males = pd.merge(years, males[['year', 'number']], how = 'left').fillna(0)\n  females = pd.merge(years, females[['year', 'number']], how = 'left').fillna(0)\n\n  fig = plt.figure(figsize = (15,9))\n  ax = fig.add_subplot(111)\n\n  ax.plot(years, males['number'])\n  ax.plot(years, females['number'])\n  plt.title(''.join('Popularity of the name', name, 'since 1900'))\n  if save:\n    if not os.path.exists(output_dir):\n      os.makedirs(output_dir)\n    plt.savefig(output_dir + ','.join(['PCA Cumulative Variance', str(df.shape[1]) + ' components']))\n  else:\n    plt.show()\n  plt.close()",
 			"file": "USA_Names/plotting.py",
+			"file_size": 1535,
+			"file_write_time": 131739475950000000,
 			"settings":
 			{
-				"buffer_size": 580,
+				"buffer_size": 1548,
 				"encoding": "UTF-8",
-				"line_ending": "Unix",
-				"name": "import seaborn as sns"
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -570,24 +569,36 @@
 		"selected_items":
 		[
 			[
-				"lintin",
-				"Anaconda: Disable linting on this file"
+				"git push",
+				"Git: Push"
 			],
 			[
 				"git co",
 				"Git: Commit"
 			],
 			[
-				"git diff",
-				"Git: Diff All Files"
-			],
-			[
 				"git add",
 				"Git: Add All"
 			],
 			[
-				"git push",
-				"Git: Push"
+				"git com",
+				"Git: Commit"
+			],
+			[
+				"git ",
+				"Git: Diff Tool All"
+			],
+			[
+				"git ad",
+				"Git: Add All"
+			],
+			[
+				"lintin",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"git diff",
+				"Git: Diff All Files"
 			],
 			[
 				"add all",
@@ -600,10 +611,6 @@
 			[
 				"lint",
 				"Anaconda: Disable linting on this file"
-			],
-			[
-				"git ad",
-				"Git: Add All"
 			],
 			[
 				"git di",
@@ -648,10 +655,6 @@
 			[
 				"change",
 				"Git: Change Branch"
-			],
-			[
-				"git com",
-				"Git: Commit"
 			],
 			[
 				"git bran",
@@ -776,10 +779,6 @@
 			[
 				"git update",
 				"Git: Update Project Ignored Files"
-			],
-			[
-				"git ",
-				"Git: Add Current File"
 			],
 			[
 				"git del",
@@ -1107,6 +1106,7 @@
 	],
 	"file_history":
 	[
+		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles/USA_Names/plotting.py",
 		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles/USA_Names/test.py",
 		"/Users/jason.wang/Documents/USA_Names_EDA.py",
 		"/Users/jason.wang/Documents/Analytics Projects/Pulse-of-the-Nation/Sept_Analysis.py",
@@ -1224,6 +1224,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"year_test",
 			"top50_female_names",
 			"top50_f3emale_names",
 			"top50_male_names",
@@ -1247,7 +1248,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -1256,7 +1257,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1547,
+						"buffer_size": 1791,
 						"regions":
 						{
 							"bookmarks":
@@ -1272,8 +1273,8 @@
 						"selection":
 						[
 							[
-								360,
-								360
+								686,
+								686
 							]
 						],
 						"settings":
@@ -1283,6 +1284,14 @@
 								{
 									"characters": ".",
 									"selector": "source.python - string - comment - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
 								},
 								{
 									"characters": ".",
@@ -1316,7 +1325,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -1325,15 +1334,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 580,
+						"buffer_size": 1548,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								566,
-								566
+								713,
+								713
 							]
 						],
 						"settings":
@@ -1347,36 +1356,16 @@
 								{
 									"characters": ".",
 									"selector": "source.python - string - constant.numeric"
-								},
-								{
-									"characters": ".",
-									"selector": "source.python - string - constant.numeric"
-								},
-								{
-									"characters": ".",
-									"selector": "source.python - string - constant.numeric"
-								},
-								{
-									"characters": ".",
-									"selector": "source.python - string - constant.numeric"
-								},
-								{
-									"characters": ".",
-									"selector": "source.python - string - constant.numeric"
-								},
-								{
-									"characters": ".",
-									"selector": "source.python - string - constant.numeric"
 								}
 							],
-							"auto_name": "import seaborn as sns",
+							"git_gutter_is_enabled": true,
 							"syntax": "Packages/Python/Python.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -1415,7 +1404,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 220.0
+		"height": 188.0
 	},
 	"output.find_results":
 	{
@@ -1423,7 +1412,7 @@
 	},
 	"output.git":
 	{
-		"height": 128.0
+		"height": 163.0
 	},
 	"output.mdpopups":
 	{
