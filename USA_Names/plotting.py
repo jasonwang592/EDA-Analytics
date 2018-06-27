@@ -61,6 +61,8 @@ def namePopularity(df, name, output_dir, prefix = 0, save = True):
   ax.plot(years, females['number'], label = 'Female')
   plt.legend(loc = 1)
   plt.title(' '.join(['Popularity of the name', name, 'since 1900']))
+  plt.xlabel('Year')
+  plt.ylabel('Number')
   if save:
     if not os.path.exists(output_dir):
       os.makedirs(output_dir)
