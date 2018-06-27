@@ -9,18 +9,17 @@ def heatmapper(df, gender, output_dir, save = True):
   '''Plots the heatmap corresponding with the number of occurences of a name.
 
   Args:
-    - df        (DataFrame): The dataframe all data
-    - gender    (String)   : The gender that we interested in investigating
+    - df        (DataFrame): The dataframe containing all data
+    - gender    (String)   : The gender contained within the DataFrame
     - output_dir(String)   : The directory to save output to
     - save      (Boolean)  : Saves the file by default, if set to False, displays the plot instead
   '''
   output_dir += 'NameHeatmaps/'
-  df = df[df['gender'] == gender]
   result = df.pivot(index = 'name', columns = 'decade', values = 'number')
-  fig = plt.figure(figsize = (15, 9))
+  fig = plt.figure(figsize = (15, 11))
   fig = sns.heatmap(result, cmap = 'YlGnBu')
   plt.xticks(rotation = 90)
-  fname = ' '.join['Top', len(df['name'].unique()), gender, 'Names']
+  fname = ' '.join(['Top', str(len(df['name'].unique())), gender, 'Names'])
   plt.title(fname)
 
   if save:
@@ -31,20 +30,22 @@ def heatmapper(df, gender, output_dir, save = True):
     plt.show()
   plt.close()
 
-def namePopularity(df, name, output_dir, save = True):
+def namePopularity(df, name, output_dir, prefix = 0, save = True):
   '''Plots the number of occurrences of a provided name over the span of the dataset.
 
   Args:
-    - df        (DataFrame): The dataframe all data
+    - df        (DataFrame): The dataframe containing all data
     - name      (String)   : The name that we are interested in investigating
     - output_dir(String)   : The directory to save output to
+    - prefix    (Integer)  : Optional value to be appended to start of file name
     - save      (Boolean)  : Saves the file by default, if set to False, displays the plot instead
   '''
-  if name not in df['name']:
-    print('There is no one with this recorded name.')
-    return
+
   output_dir += 'NamePopularityLinePlots/'
   filter_df = df[df['name'] == name]
+  if filter_df.empty:
+    print('There is no one with this recorded name.')
+    return
   years = pd.DataFrame({'year': sorted(filter_df['year'].unique())})
 
   males = filter_df[filter_df['gender'] == 'Male'].sort_values('year')
@@ -63,6 +64,8 @@ def namePopularity(df, name, output_dir, save = True):
   if save:
     if not os.path.exists(output_dir):
       os.makedirs(output_dir)
+    if prefix:
+      name = ' '.join([str(prefix), '-', name])
     plt.savefig(output_dir + name)
   else:
     plt.show()
