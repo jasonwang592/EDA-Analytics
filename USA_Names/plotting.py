@@ -4,6 +4,33 @@ import matplotlib.pyplot as plt
 import pandas as pd
 plt.style.use('fivethirtyeight')
 
+def bars(df, gender, output_dir, save = True):
+  '''Plots the barchart for corresponding to some value associated with a name
+
+  Args:
+    - df        (DataFrame): The dataframe containing all data
+    - gender    (String)   : What gender data is contained within the dataframe
+    - output_dir(String)   : The directory to save output to
+    - save      (Boolean)  : Saves the file by default, if set to False, displays the plot instead
+  '''
+  output_dir += 'AverageAgeNames/'
+  n = df.shape[0]
+
+  fig = plt.figure(figsize = (15, 12))
+  fig = sns.barplot(data = df, x = df.columns[0], y = df.columns[1])
+  plt.title(' '.join(['Average age of top', str(n), 'most common', gender.lower(), 'names']))
+  plt.xlabel('Name')
+  plt.xticks(rotation = 90)
+  plt.ylabel('Age')
+  plt.tight_layout()
+  fname = ' '.join([gender, 'average age'])
+  if save:
+    if not os.path.exists(output_dir):
+      os.makedirs(output_dir)
+    plt.savefig(output_dir + fname)
+  else:
+    plt.show()
+  plt.close()
 
 def heatmapper(df, gender, output_dir, save = True):
   '''Plots the heatmap corresponding with the number of occurences of a name.

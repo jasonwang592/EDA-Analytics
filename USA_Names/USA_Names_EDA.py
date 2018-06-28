@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import datetime
 import plotting
+import sys
 
 def wavg(df, value, weights):
   v = df[value]
@@ -21,7 +22,7 @@ df['decade'] = 1900 + (df['year'] - (df['year']//100 * 100))//10 * 10
 gender_map = {'M': 'Male', 'F': 'Female'}
 df['gender'] = df['gender'].map(gender_map)
 
-set_size = 15
+set_size = 50
 agg_gender = df.groupby('gender').count()
 name_gender = df.groupby(['name', 'gender']).sum()
 name_gender = name_gender.reset_index()
@@ -31,6 +32,19 @@ top_female_df = name_gender[name_gender['gender'] == 'Female'].sort_values('numb
 # Return the top set_size male and female names
 top_male_names = top_male_df['name']
 top_female_names = top_female_df['name']
+
+#Find average age of the most common n names for each gender
+common_male = df[(df['name'].isin(top_male_names)) & (df['gender'] == 'Male')]
+common_female = df[(df['name'].isin(top_female_names)) & (df['gender'] == 'Male')]
+wavg_male = pd.DataFrame(common_male.groupby('name').apply(wavg, 'age', 'number').reset_index())
+wavg_female = pd.DataFrame(common_female.groupby('name').apply(wavg, 'age', 'number').reset_index())
+wavg_male.columns = ['name', 'averageAge']
+wavg_female.columns = ['name', 'averageAge']
+
+wavg_male.sort_values('averageAge', inplace = True, ascending = False)
+wavg_female.sort_values('averageAge', inplace = True, ascending = False)
+plotting.bars(wavg_male, 'Male', 'output/')
+plotting.bars(wavg_female,'Female', 'output/')
 
 #Get the count of people for the top set_size names and gender within a year
 name_gender_age = df.groupby(['name', 'gender', 'year']).sum()
