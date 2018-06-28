@@ -44,8 +44,10 @@ def heatmapper(df, gender, output_dir, save = True):
   output_dir += 'NameHeatmaps/'
   result = df.pivot(index = 'name', columns = 'decade', values = 'number')
   fig = plt.figure(figsize = (15, 11))
-  fig = sns.heatmap(result, cmap = 'YlGnBu')
+  fig = sns.heatmap(result, cmap = 'Blues')
   plt.xticks(rotation = 90)
+  plt.xlabel('Decade')
+  plt.ylabel('Name')
   fname = ' '.join(['Top', str(len(df['name'].unique())), gender, 'Names'])
   plt.title(fname)
 

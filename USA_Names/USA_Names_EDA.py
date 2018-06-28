@@ -22,7 +22,7 @@ df['decade'] = 1900 + (df['year'] - (df['year']//100 * 100))//10 * 10
 gender_map = {'M': 'Male', 'F': 'Female'}
 df['gender'] = df['gender'].map(gender_map)
 
-set_size = 50
+set_size = 15
 agg_gender = df.groupby('gender').count()
 name_gender = df.groupby(['name', 'gender']).sum()
 name_gender = name_gender.reset_index()
