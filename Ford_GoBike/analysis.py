@@ -62,6 +62,47 @@ def pickler(repickle=False):
   else:
     return pickle.load(open(pickle_name, 'rb'))
 
+def weekday_analysis(df, top_n, output_dir, save_run):
+  #Now get top N stations by average deficit/surplus by day of week
+  weekday_df = df.sort_values(['day','net_bikes']).groupby(['day','start_station_name'])['start_station_name','net_bikes'].mean()
+  top_deficit = weekday_df.groupby('day').apply(lambda x: x.nsmallest(top_n, 'net_bikes',keep='first')).reset_index(level=0,drop=True)
+  top_surplus = weekday_df.groupby('day').apply(lambda x: x.nlargest(top_n, 'net_bikes',keep='first')).reset_index(level=0,drop=True)
+  joint = pd.concat([top_deficit,top_surplus])
+  joint.reset_index(inplace=True)
+  joint.sort_values(['day','net_bikes'],ascending=[True,False],inplace=True)
+  for day in ordered_days:
+    temp = joint[joint['day'] == day]
+    plotting.bar_wrapper(df=temp,
+      x='net_bikes',
+      y='start_station_name',
+      title='Top stations by bike surplus and deficit',
+      xlab='Net Bikes',
+      ylab='Station Name',
+      day=str(day),
+      output_dir=output_dir+'Net Bikes by Weekday/'+'Total/',
+      save=save_run)
+
+  #Do it again but split by user type:
+  for user in list(df['user_type'].unique()):
+    temp = df[df['user_type']==user]
+    weekday_df = temp.sort_values(['day','net_bikes']).groupby(['day','start_station_name'])['start_station_name','net_bikes'].mean()
+    top_deficit = weekday_df.groupby('day').apply(lambda x: x.nsmallest(top_n, 'net_bikes',keep='first')).reset_index(level=0,drop=True)
+    top_surplus = weekday_df.groupby('day').apply(lambda x: x.nlargest(top_n, 'net_bikes',keep='first')).reset_index(level=0,drop=True)
+    joint = pd.concat([top_deficit,top_surplus])
+    joint.reset_index(inplace=True)
+    joint.sort_values(['day','net_bikes'],ascending=[True,False],inplace=True)
+    for day in ordered_days:
+      temp = joint[joint['day'] == day]
+      plotting.bar_wrapper(df=temp,
+        x='net_bikes',
+        y='start_station_name',
+        title=' '.join([user,'top stations by bike surplus and deficit']),
+        xlab='Net Bikes',
+        ylab='Station Name',
+        day=str(day),
+        output_dir=output_dir+'Net Bikes by Weekday/'+user+'/',
+        save=save_run)
+
 
 '''Main script'''
 df = pickler()
@@ -89,11 +130,11 @@ start_df.set_index('start_station_name')
 end_df.set_index('end_station_name')
 
 #Tie the dataframes together and get the net flow of bikes for each station
-joint_df = pd.concat([start_df,end_df], axis = 1, join='inner')
+joint_df = pd.concat([start_df,end_df],axis=1,join='inner')
 joint_df['net_bikes'] = joint_df['dropped_off'] - joint_df['picked_up']
-joint_df.drop(['dropped_off','picked_up'], axis = 1, inplace=True)
+joint_df.drop(['dropped_off','picked_up'],axis=1,inplace=True)
 #Drop duplicate columns
-_,i = np.unique(joint_df.columns, return_index = True)
+_,i = np.unique(joint_df.columns,return_index=True)
 joint_df = joint_df.iloc[:,i]
 joint_df['day'] = pd.to_datetime(joint_df['date']).dt.weekday_name
 joint_df['day'] = pd.Categorical(joint_df['day'], ordered_days)
@@ -106,45 +147,7 @@ grouped = joint_df.groupby('start_station_name').mean().sort_values('net_bikes')
 top_surplus = grouped.head(top_n)
 top_deficit = grouped.tail(top_n)
 
-#Now get top N stations by average deficit/surplus by day of week
-weekday_df = joint_df.sort_values(['day','net_bikes']).groupby(['day','start_station_name'])['start_station_name','net_bikes'].mean()
-top_deficit = weekday_df.groupby('day').apply(lambda x: x.nsmallest(top_n, 'net_bikes',keep='first')).reset_index(level=0,drop=True)
-top_surplus = weekday_df.groupby('day').apply(lambda x: x.nlargest(top_n, 'net_bikes',keep='first')).reset_index(level=0,drop=True)
-joint = pd.concat([top_deficit,top_surplus])
-joint.reset_index(inplace=True)
-joint.sort_values(['day','net_bikes'],ascending=[True,False],inplace=True)
-for day in ordered_days:
-  temp = joint[joint['day'] == day]
-  plotting.bar_wrapper(df=temp,
-    x='net_bikes',
-    y='start_station_name',
-    title='Top stations by bike surplus and deficit',
-    xlab='Net Bikes',
-    ylab='Station Name',
-    day=str(day),
-    output_dir=output_dir+'Net Bikes by Weekday/'+'Total/',
-    save=save_run)
-
-#Do it again but split by user type:
-for user in list(joint_df['user_type'].unique()):
-  temp = joint_df[joint_df['user_type']==user]
-  weekday_df = temp.sort_values(['day','net_bikes']).groupby(['day','start_station_name'])['start_station_name','net_bikes'].mean()
-  top_deficit = weekday_df.groupby('day').apply(lambda x: x.nsmallest(top_n, 'net_bikes',keep='first')).reset_index(level=0,drop=True)
-  top_surplus = weekday_df.groupby('day').apply(lambda x: x.nlargest(top_n, 'net_bikes',keep='first')).reset_index(level=0,drop=True)
-  joint = pd.concat([top_deficit,top_surplus])
-  joint.reset_index(inplace=True)
-  joint.sort_values(['day','net_bikes'],ascending=[True,False],inplace=True)
-  for day in ordered_days:
-    temp = joint[joint['day'] == day]
-    plotting.bar_wrapper(df=temp,
-      x='net_bikes',
-      y='start_station_name',
-      title=' '.join([user,'top stations by bike surplus and deficit']),
-      xlab='Net Bikes',
-      ylab='Station Name',
-      day=str(day),
-      output_dir=output_dir+'Net Bikes by Weekday/'+user+'/',
-      save=save_run)
+# weekday_analysis(joint_df, top_n, output_dir, save_run)
 
 '''Get the top N stations by date that have the most surplus or deficit of bikes'''
 sorted_joint_df = joint_df.sort_values(['date','net_bikes']).groupby('date')['start_station_name', 'net_bikes']
