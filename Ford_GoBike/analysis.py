@@ -28,6 +28,9 @@ def region_mapper(x):
     return 'South Bay'
 
 def pickler(repickle=False):
+  '''Does some initial cleaning of the data including dropping uninsightful columns and splitting up
+  dates into different components.
+  '''
   if not os.path.exists(pickle_name) or repickle == True:
     df = pd.DataFrame()
 
@@ -201,31 +204,158 @@ def station_analysis(df, region, save_run):
   top_deficit = sorted_joint_df.apply(lambda x: x.nsmallest(top_n,'net_bikes'))
   top_surplus = sorted_joint_df.apply(lambda x: x.nlargest(top_n, 'net_bikes'))
 
+def distribution_analysis(df,inds,dep,titles,hues,xlabs,ylab,output_dir,save):
+  '''Helper to unpack lists to generate multiple plots for distributions
+  Args:
+    - df          (DataFrame): The dataframe containing all data
+    - inds        (List)     : List of independent variables to plot for
+    - dep         (String)   : Dependent variable to plot distribution of
+    - titles      (List)     : List of titles for plots
+    - hues        (List)     : List of variables to group by
+    - xlabs       (List)     : List of x-axis labels
+    - ylab        (String)   : Y-axis label
+    - output_dir  (String)   : Base directory for this set of charts
+    - save        (Boolean)  : Saves the file by default, if set to False, displays the plot instead
+    - suffix      (String)   : Suffix to append to title, also the filename
+  '''
+  for ind,(x,hue,title,xlab) in enumerate(zip(inds,hues,titles,xlabs)):
+    plotting.boxplot_wrapper(df=numerical_df,
+      x=x,
+      y=dep,
+      xlab=xlab,
+      ylab=ylab,
+      title=title,
+      output_dir=output_dir,
+      save=True,
+      suffix=title,
+      outliers=False,
+      hue=hue)
+    plotting.violinplot_wrapper(df=numerical_df,
+      x=x,
+      y=dep,
+      xlab=xlab,
+      ylab=ylab,
+      title=title,
+      output_dir=output_dir,
+      save=True,
+      suffix=title,
+      outliers=False,
+      hue=hue)
+
+def hist_wrapper(df,var,output_dir,save,lim=None):
+  '''Simple helper to plot histograms for age or ride duration distribution
+  Args:
+    - df          (Series)   : The series for which to plot the histogram
+    - var         (String)   : Variable for which to plot distribution
+    - output_dir  (String)   : Base directory for this set of charts
+    - save        (Boolean)  : Saves the file by default, if set to False, displays the plot instead
+    - lim         (Integer)  : Upper bound for var value
+  '''
+  if var not in ('age','duration'):
+    raise ValueError("Use either 'age' or 'duration' as the distribution to plot")
+  if var == 'age':
+    if lim:
+      title =  title = ' '.join(['Distribution of rider age under',str(lim)])
+      df = df.loc[df[var]<=lim]
+    else:
+      title = 'Distribution of rider age'
+  else:
+    if lim:
+      title = title = ' '.join(['Distribution of ride duration under',str(lim)])
+      df = df.loc[df[var]<=lim]
+    else:
+      title = 'Distribution of ride duration'
+
+  fig = plt.figure(figsize = (15,9))
+  sns.distplot(df[var])
+  plt.xlabel(var.capitalize())
+  plt.ylabel('Count')
+  plt.title(title)
+  plt.tight_layout()
+  if save:
+    if not os.path.exists(output_dir):
+      os.makedirs(output_dir)
+    plt.savefig(output_dir + title)
+  else:
+    plt.show()
+  plt.close()
 
 if __name__ == '__main__':
   save_run = True
   df = pickler()
+
+  #Analysis of net bikes at stations within a given region
   # station_analysis(df, 'San Francisco', save_run)
 
   #Of 1,338,864 rides, roughly 125,000 are missing data on birth_year and gender. We'll drop those
   numerical_df = df.copy()
   numerical_df = numerical_df.dropna(subset=['birth_year','gender'])
-  numerical_df['age'] = numerical_df['birth_year'].apply(lambda x: pd.Timestamp.now().year - x)
+  numerical_df['age'] = numerical_df['birth_year'].apply(lambda x:pd.Timestamp.now().year-x)
   numerical_df['age'] = numerical_df['age'].map(int)
   bins = [18,23,28,33,38,43,48,53,58,63,68,73,78,83,88,93,98,np.inf]
   bin_names = ['18-23','23-28','28-33','33-38','38-43','43-48','48-53','53-58','58-63','63-68',
               '68-73','73-78','78-83','83-88','88-93','93-98','98+']
   d = dict(enumerate(bin_names,1))
   numerical_df['age_range'] = list(map(d.get, np.digitize(numerical_df['age'],bins)))
-  print(numerical_df.head())
-  sys.exit()
-  print('Average age for all riders: ' + str(numerical_df['age'].mean()))
-  average_gender = numerical_df.groupby('gender')['age'].mean().plot()
-  gender_count = numerical_df.groupby('gender').size()
-  user_gender_count = numerical_df.groupby(['user_type','gender']).count()
-  ageRange_count = numerical_df.groupby('age_range').count()
-  user_ageRange_count = numerical_df.groupby(['user_type','age_range']).count()
-  print(count_gender)
+
+  #Plot some histograms for age and duration and narrow the dataset
+  print('Processing Histograms...')
+  hist_wrapper(df=numerical_df,
+    var='age',
+    output_dir=output_dir+'Distribution Plots/',
+    save=save_run,
+    lim=70)
+  hist_wrapper(df=numerical_df,
+    var='duration',
+    output_dir=output_dir+'Distribution Plots/',
+    save=save_run,
+    lim=2000)
+  numerical_df=numerical_df.loc[(numerical_df['age']<=70) & (numerical_df['duration']<=2000)]
+  print('Histograms complete.')
+
+  # average_gender = numerical_df.groupby('gender')['age'].mean().reset_index(name='age')
+  # gender_count = numerical_df.groupby('gender').size()
+  # user_gender_count = numerical_df.groupby(['user_type','gender']).count()
+  # ageRange_count = numerical_df.groupby('age_range').count()
+  # user_ageRange_count = numerical_df.groupby(['user_type','age_range']).count()
+
+  #Set together all the plots we want to create stats for with their parameters and zip them up
+  box_x = ['gender','user_type','gender']
+  box_hue = [None,None,'user_type']
+  box_title = ['Age distribution by gender',
+    'Age distribution by user type',
+    'Age distribution by gender and user type']
+  box_xlab = ['Gender','User Type','User Type']
+  print('Processing age distributions...')
+  distribution_analysis(df=numerical_df,
+    inds=box_x,
+    dep='age',
+    hues=box_hue,
+    xlabs=box_xlab,
+    ylab='Age',
+    output_dir=output_dir+'Numerical Plots/Age distribution/',
+    titles=box_title,
+    save=save_run)
+  print('Age distributions complete.')
+  print('Processing duration distributions...')
+  box_x = ['gender','user_type','gender','age_range','age_range']
+  box_hue = [None,None,'user_type',None,'user_type']
+  box_title = ['Ride duration distribution by gender',
+    'Ride duration by user type',
+    'Ride duration by gender and user type',
+    'Ride duration by age group',
+    'Ride duration by age group and user type']
+  box_xlab = ['Gender','User Type','User Type','Age Range','User Type']
+  distribution_analysis(df=numerical_df,
+    inds=box_x,
+    dep='duration',
+    hues=box_hue,
+    xlabs=box_xlab,
+    ylab='Ride Duration',
+    output_dir=output_dir+'Numerical Plots/Duration distribution/',
+    titles=box_title,
+    save=save_run)
+  print('Duration distributions complete.')
   sys.exit()
 
   '''Let's find some aggregate numbers about ridership by date, day of week, user type and so on'''

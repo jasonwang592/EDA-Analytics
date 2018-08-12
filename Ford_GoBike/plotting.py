@@ -41,3 +41,78 @@ def bar_wrapper(df,x,y,title,xlab,ylab,output_dir,save,suffix,orientation='v'):
   else:
     plt.show()
   plt.close()
+
+def boxplot_wrapper(df,x,y,title,xlab,ylab,output_dir,save,suffix,hue=None,outliers=False):
+  '''Plots the boxplot for the provided data.
+  Args:
+    - df          (DataFrame): The dataframe containing all data
+    - x           (String)   : Name of dataframe column to act as independent variable if vertical
+    - y           (String)   : Name of dataframe column to act as dependent variable if vertical
+    - title       (String)   : Title of the chart
+    - xlab        (String)   : X-axis label
+    - ylab        (String)   : Y-axis label
+    - output_dir  (String)   : Base directory for this set of charts
+    - save        (Boolean)  : Saves the file by default, if set to False, displays the plot instead
+    - suffix      (String)   : Suffix to append to title, also the filename
+    - hue         (String)   : Variable by which to group data by
+    - outliers    (Boolean)  : Show outliers if True
+  '''
+  fig = plt.figure(figsize = (15,9))
+  g = sns.boxplot(x=x,y=y,data=df,showfliers=outliers,hue=hue)
+  if hue:
+    plt.legend(title=' '.join(hue.split('_')).capitalize())
+  if outliers:
+    title = '-'.join([title,'with outliers'])
+  plt.xlabel(xlab)
+  plt.ylabel(ylab)
+  plt.title(title)
+  plt.tight_layout()
+  fname = suffix
+  fname = '-'.join([fname,'boxplot'])
+  if save:
+    if not os.path.exists(output_dir):
+      os.makedirs(output_dir)
+    plt.savefig(output_dir + fname)
+  else:
+    plt.show()
+  plt.close()
+
+def violinplot_wrapper(df,x,y,title,xlab,ylab,output_dir,save,suffix,hue=None,outliers=False):
+  '''Plots the boxplot for the provided data.
+  Args:
+    - df          (DataFrame): The dataframe containing all data
+    - x           (String)   : Name of dataframe column to act as independent variable if vertical
+    - y           (String)   : Name of dataframe column to act as dependent variable if vertical
+    - title       (String)   : Title of the chart
+    - xlab        (String)   : X-axis label
+    - ylab        (String)   : Y-axis label
+    - output_dir  (String)   : Base directory for this set of charts
+    - save        (Boolean)  : Saves the file by default, if set to False, displays the plot instead
+    - suffix      (String)   : Suffix to append to title, also the filename
+    - hue         (String)   : Variable by which to group data by
+    - outliers    (Boolean)  : Show outliers if True
+  '''
+  fig = plt.figure(figsize = (15,9))
+  g = sns.violinplot(x=x,y=y,data=df,showfliers=outliers,hue=hue,split=True)
+  if outliers:
+    title = '-'.join([title,'with outliers'])
+  if hue:
+    plt.legend(title=' '.join(hue.split('_')).capitalize())
+  plt.xlabel(xlab)
+  plt.ylabel(ylab)
+  plt.title(title)
+  plt.tight_layout()
+  fname = suffix
+  if hue:
+    fname = '-'.join([fname,'violinplot'])
+  if save:
+    if not os.path.exists(output_dir):
+      os.makedirs(output_dir)
+    plt.savefig(output_dir + fname)
+  else:
+    plt.show()
+  plt.close()
+
+
+
+
