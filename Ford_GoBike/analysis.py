@@ -218,6 +218,7 @@ def distribution_analysis(df,inds,dep,titles,hues,xlabs,ylab,output_dir,save):
     - save        (Boolean)  : Saves the file by default, if set to False, displays the plot instead
     - suffix      (String)   : Suffix to append to title, also the filename
   '''
+  age_bins = sorted(list(df['age_range'].unique()))
   for ind,(x,hue,title,xlab) in enumerate(zip(inds,hues,titles,xlabs)):
     plotting.boxplot_wrapper(df=numerical_df,
       x=x,
@@ -229,7 +230,8 @@ def distribution_analysis(df,inds,dep,titles,hues,xlabs,ylab,output_dir,save):
       save=True,
       suffix=title,
       outliers=False,
-      hue=hue)
+      hue=hue,
+      order=age_bins if x=='age_range' else None)
     plotting.violinplot_wrapper(df=numerical_df,
       x=x,
       y=dep,
@@ -240,7 +242,8 @@ def distribution_analysis(df,inds,dep,titles,hues,xlabs,ylab,output_dir,save):
       save=True,
       suffix=title,
       outliers=False,
-      hue=hue)
+      hue=hue,
+      order=age_bins if x=='age_range' else None)
 
 def hist_wrapper(df,var,output_dir,save,lim=None):
   '''Simple helper to plot histograms for age or ride duration distribution
@@ -283,7 +286,28 @@ def hist_wrapper(df,var,output_dir,save,lim=None):
 if __name__ == '__main__':
   save_run = True
   df = pickler()
+  print(df.groupby(['start_hour','user_type'])['bike_id'].count().reset_index(name='rides'))
+  # #General plots about high level information
+  # plotting.bar_wrapper(df=df.groupby('start_hour')['bike_id'].count().reset_index(name='rides'),
+  #   x='start_hour',
+  #   y='rides',
+  #   title='Rides per hour',
+  #   xlab='Hour',
+  #   ylab='Rides',
+  #   output_dir=output_dir+'Aggregates/',
+  #   save=save_run)
+  # plotting.bar_wrapper(df=df.groupby(['start_hour','user_type'])['bike_id'].count().reset_index(name='rides'),
+  #   x='start_hour',
+  #   y='rides',
+  #   title='Rides per hour by user type',
+  #   xlab='Hour',
+  #   ylab='Rides',
+  #   hue='user_type',
+  #   output_dir=output_dir+'Aggregates/',
+  #   save=save_run)
 
+
+  sys.exit()
   #Analysis of net bikes at stations within a given region
   # station_analysis(df, 'San Francisco', save_run)
 

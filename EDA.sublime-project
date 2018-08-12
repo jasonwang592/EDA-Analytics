@@ -11,6 +11,15 @@
 	"folders":
 	[
 		{
+			"file_exclude_patterns":
+			[
+				"Ford_GoBike/GoBike.p"
+			],
+			"folder_exclude_patterns":
+			[
+				"Ford_GoBike/data",
+				"Ford_GoBike/__pycache__"
+			],
 			"path": "."
 		}
 	]
