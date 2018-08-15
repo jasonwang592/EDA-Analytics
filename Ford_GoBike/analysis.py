@@ -80,8 +80,8 @@ def weekday_net_bars(df, top_n, output_dir, save):
       title='Top stations by bike surplus and deficit',
       xlab='Net Bikes',
       ylab='Station Name',
-      day=str(day),
       output_dir=output_dir+'Net Bikes by Weekday/'+'Total/',
+      suffix=str(day),
       save=save,
       orientation='h')
 
@@ -102,8 +102,8 @@ def weekday_net_bars(df, top_n, output_dir, save):
         title=' '.join([user,'top stations by bike surplus and deficit']),
         xlab='Net Bikes',
         ylab='Station Name',
-        day=str(day),
         output_dir=output_dir+'Net Bikes by Weekday/'+user+'/',
+        suffix=str(day),
         save=save,
         orientation='h')
 
@@ -119,7 +119,7 @@ def hour_sum_bars(df, stations, output_dir, save, split_user=False):
         plotting.bar_wrapper(df=hour_df,
           x='start_hour',
           y='rides',
-          title= ' - '.join(['Rides by hour',station]),
+          title= 'Rides by hour',
           xlab='Hour',
           ylab='Number of Rides',
           output_dir=output_dir+ user +'/',
@@ -127,13 +127,11 @@ def hour_sum_bars(df, stations, output_dir, save, split_user=False):
           suffix=station,
           orientation='v')
     else:
-      o_dir = output_dir + 'All Users/'
       hour_df = station_df.groupby('start_hour')['bike_id'].count().reset_index(name='rides')
-      print(station, hour_df)
       plotting.bar_wrapper(df=hour_df,
         x='start_hour',
         y='rides',
-        title= ' - '.join(['Rides by hour',station]),
+        title= 'Rides by hour',
         xlab='Hour',
         ylab='Number of Rides',
         output_dir=output_dir+'Total/',
@@ -141,22 +139,22 @@ def hour_sum_bars(df, stations, output_dir, save, split_user=False):
         suffix=station,
         orientation='v')
 
-def station_analysis(df, region, save_run):
+def station_analysis(df, region, output_dir, save_run):
   '''
   Performs analysis on stations based on ridership for dates and net bikes at stations for weekdays
   Args:
     - df        (DataFrame): The DataFrame from the pickled object
     - region    (String)   : The region to analyze (San Francisco, East Bay, South Bay)
+    - output_dir  (String)   : Base directory for this set of charts
     - save_run  (Boolean)  : If true, saves all charts, otherwise displays them
   '''
-  df = pickler()
   if not os.path.exists(output_dir):
     os.mkdir(output_dir)
   stations = list(df['start_station_name'].unique())
   df['date'] = df['start_time'].dt.date
   df['day_of_week'] = pd.Categorical(df['day_of_week'], ordered_days)
   df = df[df['region'] == region]
-  output_dir += cur_region + '/'
+  output_dir += region + '/'
 
   '''
   Create two aggregated DataFrames that each groups by date and station (pick up and drop off)
@@ -191,13 +189,13 @@ def station_analysis(df, region, save_run):
   top_deficit = grouped.tail(top_n)
 
   # Plotting out, by weekday, what stations have the most surplus or deficit
-  weekday_analysis(joint_df, top_n, output_dir, save_run)
+  weekday_net_bars(joint_df, top_n, output_dir, save_run)
 
   # For the top_n stations by ridership, plots the ridership for those stations by hour
   top_n = 10
   temp = df.groupby(['start_station_name'])['bike_id'].count().reset_index(name='total_rides').sort_values('total_rides', ascending=False)
   station_list = list(temp.head(top_n)['start_station_name'])
-  hour_sum_bars(df,station_list,output_dir=output_dir+'Rides by hour/',save=save_run, split_user=True)
+  hour_sum_bars(df,station_list,output_dir=output_dir+'Rides by hour/',save=save_run, split_user=False)
 
   '''Get the top N stations by date that have the most surplus or deficit of bikes'''
   sorted_joint_df = joint_df.sort_values(['date','net_bikes']).groupby('date')['start_station_name', 'net_bikes']
@@ -228,7 +226,7 @@ def distribution_analysis(df,inds,dep,titles,hues,xlabs,ylab,output_dir,save):
       title=title,
       output_dir=output_dir,
       save=True,
-      suffix=title,
+      suffix=None,
       outliers=False,
       hue=hue,
       order=age_bins if x=='age_range' else None)
@@ -240,7 +238,7 @@ def distribution_analysis(df,inds,dep,titles,hues,xlabs,ylab,output_dir,save):
       title=title,
       output_dir=output_dir,
       save=True,
-      suffix=title,
+      suffix=None,
       outliers=False,
       hue=hue,
       order=age_bins if x=='age_range' else None)
@@ -333,17 +331,17 @@ if __name__ == '__main__':
   # aggregate_plots(df)
 
   #Calculate some generic statistics
-  print(df.groupby('user_type').median()['duration'])
-  print(df.groupby('gender').size())
-  print(df.groupby('day_of_week').size())
+
   user_dayofweek = df.groupby(['user_type','day_of_week']).size()
   temp = user_dayofweek.unstack()
   temp = temp[['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']]
   user_dayofweek = temp.stack()
-  print(user_dayofweek)
 
   #Analysis of net bikes at stations within a given region
-  # station_analysis(df, 'San Francisco', save_run)
+  print('Processing stations...')
+  station_analysis(df, 'San Francisco',output_dir,save_run)
+  print('Stations complete.')
+  sys.exit()
 
   #Of 1,338,864 rides, roughly 125,000 are missing data on birth_year and gender. We'll drop those
   numerical_df = df.copy()

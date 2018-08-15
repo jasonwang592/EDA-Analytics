@@ -20,6 +20,8 @@ def bar_wrapper(df,x,y,title,xlab,ylab,output_dir,save=True,hue=None,suffix=None
   '''
 
   fig = plt.figure(figsize = (15,9))
+  if suffix:
+    title = ' - '.join([title,suffix])
   if orientation == 'v':
     pal = sns.color_palette("RdYlGn_r", len(df[x]))
     rank = df[y].argsort().argsort()
