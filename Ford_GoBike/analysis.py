@@ -283,31 +283,65 @@ def hist_wrapper(df,var,output_dir,save,lim=None):
     plt.show()
   plt.close()
 
+def aggregate_plots(df):
+  plotting.bar_wrapper(df=df.groupby('gender')['bike_id'].count().reset_index(name='rides'),
+    x='gender',
+    y='rides',
+    title='Rides by gender',
+    xlab='Gender',
+    ylab='Rides',
+    output_dir=output_dir+'Aggregates/',
+    save=save_run)
+  plotting.bar_wrapper(df=df.groupby('region')['bike_id'].count().reset_index(name='rides'),
+    x='region',
+    y='rides',
+    title='Rides by region',
+    xlab='Region',
+    ylab='Rides',
+    output_dir=output_dir+'Aggregates/',
+    save=save_run)
+  plotting.bar_wrapper(df=df.groupby('user_type')['bike_id'].count().reset_index(name='rides'),
+    x='user_typec',
+    y='rides',
+    title='Rides by user type',
+    xlab='User Type',
+    ylab='Rides',
+    output_dir=output_dir+'Aggregates/',
+    save=save_run)
+  plotting.bar_wrapper(df=df.groupby('start_hour')['bike_id'].count().reset_index(name='rides'),
+    x='start_hour',
+    y='rides',
+    title='Rides per hour',
+    xlab='Hour',
+    ylab='Rides',
+    output_dir=output_dir+'Aggregates/',
+    save=save_run)
+  plotting.bar_wrapper(df=df.groupby(['start_hour','user_type'])['bike_id'].count().reset_index(name='rides'),
+    x='start_hour',
+    y='rides',
+    title='Rides per hour by user type',
+    xlab='Hour',
+    ylab='Rides',
+    hue='user_type',
+    output_dir=output_dir+'Aggregates/',
+    save=save_run)
+
 if __name__ == '__main__':
   save_run = True
   df = pickler()
-  print(df.groupby(['start_hour','user_type'])['bike_id'].count().reset_index(name='rides'))
   # #General plots about high level information
-  # plotting.bar_wrapper(df=df.groupby('start_hour')['bike_id'].count().reset_index(name='rides'),
-  #   x='start_hour',
-  #   y='rides',
-  #   title='Rides per hour',
-  #   xlab='Hour',
-  #   ylab='Rides',
-  #   output_dir=output_dir+'Aggregates/',
-  #   save=save_run)
-  # plotting.bar_wrapper(df=df.groupby(['start_hour','user_type'])['bike_id'].count().reset_index(name='rides'),
-  #   x='start_hour',
-  #   y='rides',
-  #   title='Rides per hour by user type',
-  #   xlab='Hour',
-  #   ylab='Rides',
-  #   hue='user_type',
-  #   output_dir=output_dir+'Aggregates/',
-  #   save=save_run)
+  # aggregate_plots(df)
 
+  #Calculate some generic statistics
+  print(df.groupby('user_type').median()['duration'])
+  print(df.groupby('gender').size())
+  print(df.groupby('day_of_week').size())
+  user_dayofweek = df.groupby(['user_type','day_of_week']).size()
+  temp = user_dayofweek.unstack()
+  temp = temp[['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']]
+  user_dayofweek = temp.stack()
+  print(user_dayofweek)
 
-  sys.exit()
   #Analysis of net bikes at stations within a given region
   # station_analysis(df, 'San Francisco', save_run)
 
@@ -322,7 +356,9 @@ if __name__ == '__main__':
   d = dict(enumerate(bin_names,1))
   numerical_df['age_range'] = list(map(d.get, np.digitize(numerical_df['age'],bins)))
 
-  #Plot some histograms for age and duration and narrow the dataset
+  numerical_df=numerical_df.loc[(numerical_df['age']<=70) & (numerical_df['duration']<=2000)]
+
+    #Plot some histograms for age and duration and narrow the dataset
   print('Processing Histograms...')
   hist_wrapper(df=numerical_df,
     var='age',
@@ -334,7 +370,7 @@ if __name__ == '__main__':
     output_dir=output_dir+'Distribution Plots/',
     save=save_run,
     lim=2000)
-  numerical_df=numerical_df.loc[(numerical_df['age']<=70) & (numerical_df['duration']<=2000)]
+
   print('Histograms complete.')
 
   # average_gender = numerical_df.groupby('gender')['age'].mean().reset_index(name='age')
@@ -404,16 +440,3 @@ if __name__ == '__main__':
     plt.savefig(output_dir + fname)
   else:
     plt.show()
-
-
-'''
-#Calculate some generic statistics
-print(df.groupby('user_type').median()['duration'])
-print(df.groupby('gender').size())
-print(df.groupby('day_of_week').size())
-user_dayofweek = df.groupby(['user_type','day_of_week']).size()
-temp = user_dayofweek.unstack()
-temp = temp[['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']]
-user_dayofweek = temp.stack()
-print(user_dayofweek)
-'''

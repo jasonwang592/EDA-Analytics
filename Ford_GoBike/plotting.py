@@ -21,10 +21,10 @@ def bar_wrapper(df,x,y,title,xlab,ylab,output_dir,save=True,hue=None,suffix=None
 
   fig = plt.figure(figsize = (15,9))
   if orientation == 'v':
-    pal = sns.color_palette("RdYlGn_r", len(df[x].unique()))
+    pal = sns.color_palette("RdYlGn_r", len(df[x]))
     rank = df[y].argsort().argsort()
   else:
-    pal = sns.color_palette("RdYlGn_r", len(df[y].unique()))
+    pal = sns.color_palette("RdYlGn_r", len(df[y]))
     rank = df[x].argsort().argsort()
   sns.barplot(data=df, x=x, y=y,palette=np.array(pal[::-1])[rank],hue=hue)
   if hue:
