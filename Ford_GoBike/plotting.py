@@ -37,10 +37,7 @@ def bar_wrapper(df,x,y,title,xlab,ylab,output_dir,save=True,hue=None,suffix=None
   plt.yticks(fontsize=10)
 
   plt.tight_layout()
-  if suffix:
-    fname = suffix
-  else:
-    fname = title
+  fname = title
 
   if save:
     if not os.path.exists(output_dir):

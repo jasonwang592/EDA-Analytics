@@ -64,7 +64,7 @@ def pickler(repickle=False):
     pickle.dump(df,open(pickle_name, 'wb'))
   return pickle.load(open(pickle_name, 'rb'))
 
-def weekday_net_bars(df, top_n, output_dir, save):
+def weekday_net_bars(df,top_n,output_dir,save):
   #Now get top N stations by average deficit/surplus by day of week
   weekday_df = df.sort_values(['day','net_bikes']).groupby(['day','start_station_name'])['start_station_name','net_bikes'].mean()
   top_deficit = weekday_df.groupby('day').apply(lambda x: x.nsmallest(top_n, 'net_bikes',keep='first')).reset_index(level=0,drop=True)
@@ -107,7 +107,7 @@ def weekday_net_bars(df, top_n, output_dir, save):
         save=save,
         orientation='h')
 
-def hour_sum_bars(df, stations, output_dir, save, split_user=False):
+def hour_sum_bars(df,stations,output_dir,save,split_user=False):
 
   for station in stations:
     o_dir = output_dir
@@ -124,7 +124,7 @@ def hour_sum_bars(df, stations, output_dir, save, split_user=False):
           ylab='Number of Rides',
           output_dir=output_dir+ user +'/',
           save=save,
-          suffix=station,
+          suffix=' - '.join([station,user]),
           orientation='v')
     else:
       hour_df = station_df.groupby('start_hour')['bike_id'].count().reset_index(name='rides')
@@ -139,7 +139,7 @@ def hour_sum_bars(df, stations, output_dir, save, split_user=False):
         suffix=station,
         orientation='v')
 
-def station_analysis(df, region, output_dir, save_run):
+def station_analysis(df,region,output_dir,save_run):
   '''
   Performs analysis on stations based on ridership for dates and net bikes at stations for weekdays
   Args:
@@ -195,7 +195,7 @@ def station_analysis(df, region, output_dir, save_run):
   top_n = 10
   temp = df.groupby(['start_station_name'])['bike_id'].count().reset_index(name='total_rides').sort_values('total_rides', ascending=False)
   station_list = list(temp.head(top_n)['start_station_name'])
-  hour_sum_bars(df,station_list,output_dir=output_dir+'Rides by hour/',save=save_run, split_user=False)
+  hour_sum_bars(df,station_list,output_dir=output_dir+'Rides by hour/',save=save_run, split_user=True)
 
   '''Get the top N stations by date that have the most surplus or deficit of bikes'''
   sorted_joint_df = joint_df.sort_values(['date','net_bikes']).groupby('date')['start_station_name', 'net_bikes']
@@ -324,6 +324,45 @@ def aggregate_plots(df):
     output_dir=output_dir+'Aggregates/',
     save=save_run)
 
+def route_analysis(df,top_n,output_dir,save,split_user=False):
+  '''
+  Performs analysis on stations based on ridership for dates and net bikes at stations for weekdays
+  Args:
+    - df         (DataFrame): The DataFrame from the pickled object
+    - top_n      (Integer)  : The top n routes to plot
+    - output_dir (String)   : Base directory for this set of charts
+    - save_run   (Boolean)  : If true, saves all charts, otherwise displays them
+    - split_user (Boolean)  : If true, splits the charts and data on user type
+  '''
+  output_dir = output_dir + 'Routes/'
+  if split_user:
+    route_df = df.groupby(['user_type','route'])['bike_id'].count().reset_index(name='rides')
+    for user in list(route_df['user_type'].unique()):
+      temp = route_df.loc[route_df['user_type']==user]
+      temp = temp.sort_values('rides',ascending=False).head(top_n)
+      plotting.bar_wrapper(df=temp,
+        x='rides',
+        y='route',
+        title=' '.join(['Top',str(top_n),'most popular routes']),
+        xlab='Number of rides',
+        ylab='Station',
+        output_dir=output_dir,
+        orientation='h',
+        suffix=user)
+  else:
+    route_df = df.groupby('route')['bike_id'].count().reset_index(name='rides')
+    route_df.sort_values('rides',ascending=False,inplace=True)
+    top_routes_df = route_df.head(top_n)
+    plotting.bar_wrapper(df=top_routes_df,
+      x='rides',
+      y='route',
+      title=' '.join(['Top',str(top_n),'most popular routes']),
+      xlab='Number of rides',
+      ylab='Station',
+      output_dir=output_dir,
+      orientation='h')
+
+
 if __name__ == '__main__':
   save_run = True
   df = pickler()
@@ -338,11 +377,15 @@ if __name__ == '__main__':
   user_dayofweek = temp.stack()
 
   #Analysis of net bikes at stations within a given region
-  print('Processing stations...')
-  station_analysis(df, 'San Francisco',output_dir,save_run)
-  print('Stations complete.')
-  sys.exit()
+  # print('Processing stations...')
+  # station_analysis(df, 'San Francisco',output_dir,save_run)
+  # print('Stations complete.')
 
+  #Analysis on the most popular routes (defined by start and end station)
+  print('Processing routes...')
+  route_analysis(df,10,output_dir,save_run,split_user=True)
+  print('Routes complete.')
+  sys.exit()
   #Of 1,338,864 rides, roughly 125,000 are missing data on birth_year and gender. We'll drop those
   numerical_df = df.copy()
   numerical_df = numerical_df.dropna(subset=['birth_year','gender'])
