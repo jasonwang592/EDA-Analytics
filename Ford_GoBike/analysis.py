@@ -367,25 +367,24 @@ if __name__ == '__main__':
   save_run = True
   df = pickler()
   # #General plots about high level information
-  # aggregate_plots(df)
+  aggregate_plots(df)
 
   #Calculate some generic statistics
-
   user_dayofweek = df.groupby(['user_type','day_of_week']).size()
   temp = user_dayofweek.unstack()
   temp = temp[['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']]
   user_dayofweek = temp.stack()
 
   #Analysis of net bikes at stations within a given region
-  # print('Processing stations...')
-  # station_analysis(df, 'San Francisco',output_dir,save_run)
-  # print('Stations complete.')
+  print('Processing stations...')
+  station_analysis(df, 'San Francisco',output_dir,save_run)
+  print('Stations complete.')
 
   #Analysis on the most popular routes (defined by start and end station)
   print('Processing routes...')
   route_analysis(df,10,output_dir,save_run,split_user=True)
   print('Routes complete.')
-  sys.exit()
+
   #Of 1,338,864 rides, roughly 125,000 are missing data on birth_year and gender. We'll drop those
   numerical_df = df.copy()
   numerical_df = numerical_df.dropna(subset=['birth_year','gender'])
@@ -399,7 +398,7 @@ if __name__ == '__main__':
 
   numerical_df=numerical_df.loc[(numerical_df['age']<=70) & (numerical_df['duration']<=2000)]
 
-    #Plot some histograms for age and duration and narrow the dataset
+  #Plot some histograms for age and duration and narrow the dataset
   print('Processing Histograms...')
   hist_wrapper(df=numerical_df,
     var='age',
@@ -411,14 +410,7 @@ if __name__ == '__main__':
     output_dir=output_dir+'Distribution Plots/',
     save=save_run,
     lim=2000)
-
   print('Histograms complete.')
-
-  # average_gender = numerical_df.groupby('gender')['age'].mean().reset_index(name='age')
-  # gender_count = numerical_df.groupby('gender').size()
-  # user_gender_count = numerical_df.groupby(['user_type','gender']).count()
-  # ageRange_count = numerical_df.groupby('age_range').count()
-  # user_ageRange_count = numerical_df.groupby(['user_type','age_range']).count()
 
   #Set together all the plots we want to create stats for with their parameters and zip them up
   box_x = ['gender','user_type','gender']
@@ -457,6 +449,7 @@ if __name__ == '__main__':
     titles=box_title,
     save=save_run)
   print('Duration distributions complete.')
+
   sys.exit()
 
   '''Let's find some aggregate numbers about ridership by date, day of week, user type and so on'''
