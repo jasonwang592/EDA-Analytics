@@ -3,6 +3,7 @@ import pickle
 import pandas as pd
 import analysis
 import sys
+import os
 from sklearn.model_selection import train_test_split
 from sklearn import preprocessing
 from sklearn import tree
@@ -20,7 +21,7 @@ from statsmodels.graphics.tsaplots import plot_pacf
 from statsmodels.tsa.arima_model import ARIMA
 
 
-output_dir = 'output/prediction/'
+output_dir = 'output/Prediction/'
 
 def downsample(df,features,target):
   '''Takes an imbalanced DataFrame in terms of target variable and downsamples
@@ -68,10 +69,7 @@ def upsample(df,features,target):
   return X_train,X_test,y_train,y_test
 
 def fit_forest():
-
   clf_rf = RandomForestClassifier(n_estimators=25, random_state=12)
-
-
 
 def fit_tree(X_train,X_test,y_train,y_test,output_dir,filename=None,show_confusion=True):
   '''Splits DataFrame into train and test sets. Fits a decision tree model
@@ -153,22 +151,36 @@ def difference(df):
     diff.append(value)
   return pd.Series(diff)
 
-def arima_model(df,p,d,q,plot=False,verbose=False):
-  df = pd.Series(temp['rides'])
+def arima_model(df,p,d,q,output_dir=None,save=False,verbose=False,baseline=False):
+  '''Creates ARIMA model for data and predicts for half of the data
+  Args:
+    - df          (DataFrame): DataFrame with features for training
+    - p           (Range)    : ARIMA autoregressive parameter
+    - d           (Range)    : ARIMA degree of differencing parameter
+    - q           (Range)    : ARIMA order of MA parameter
+    - output_dir  (String)   : Output directory to save graphs to
+    - plot        (Boolean)  : Shows plots if true
+    - verbose     (Boolean)  : Prints each line of prediction if true
+    - baseline    (Boolean)  : Predicts baseline of lag 1
+  '''
+  station = str(df['start_station_name'].unique()[0])
+  df = pd.Series(df['rides'])
   df = df.astype('float32')
   train_size = len(df)//2
   train, test = df[0:train_size], df[train_size:]
-  if plot:
-    plt.plot(train)
-    plt.plot(test)
-    plt.xlabel('Day')
-    plt.ylabel('Number of Rides')
-    plt.title(' '.join(['Ridership at',station]))
-    plt.tight_layout()
-    plt.show()
-    plt.close()
-    test.reset_index(drop=True)
+  plt.plot(train)
+  plt.plot(test)
+  plt.xlabel('Day')
+  plt.ylabel('Number of Rides')
+  plt.title(' '.join(['Ridership at',station]))
+  plt.tight_layout()
+  if save:
+    if not os.path.exists(output_dir):
+      os.makedirs(output_dir)
+    plt.savefig(output_dir + 'Actual')
+  plt.close()
 
+  test.reset_index(drop=True)
   #walk-forward validation
   history = list(train)
   predictions = list()
@@ -185,12 +197,13 @@ def arima_model(df,p,d,q,plot=False,verbose=False):
     # observation
     act = test.iloc[i]
     history.append(act)
-    # print('>Predicted={:.3f}, Expected={:3f}'.format(pred,act))
+    if verbose:
+      print('>Predicted={:.3f}, Expected={:.3f}'.format(pred[0],act))
 
   #print performance
   rmse = sqrt(mean_squared_error(test, predictions))
   if verbose:
-    print('RMSE: %.3f' % rmse)
+    print('RMSE: {:.3f}'.format(rmse))
 
   #check if stationary
   if baseline:
@@ -204,33 +217,60 @@ def arima_model(df,p,d,q,plot=False,verbose=False):
     print('Critical Values:')
     for key, value in result[4].items():
       print('\t{:s}: {:.3f}'.format(key,value))
-    if plot:
-      plt.plot(stationary)
-      plt.figure(figsize = (15,9))
-      plt.subplot(211)
-      plot_acf(X, ax=plt.gca())
-      plt.subplot(212)
-      plot_pacf(X, ax=plt.gca())
-      plt.show()
-      plt.close()
 
-  # plot differenced data
-  if plot:
-    predictions = pd.Series(predictions)
-    predictions.index = test.index
-    test.reset_index(drop=True)
+    #Plot stationarity
+    plt.plot(stationary)
+    if save:
+      if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+      plt.savefig(output_dir + 'Stationarity')
+    plt.close()
+
     plt.figure(figsize = (15,9))
-    plt.plot(train,color='blue')
-    plt.plot(predictions,color='orange')
-    plt.plot(test,color='green')
-    plt.xlabel('Day')
-    plt.ylabel('Number of Rides')
-    plt.title('-'.join(['Forecasted vs. Actual Number of Rides',station]))
-    plt.tight_layout()
-    plt.show()
+    plt.subplot(211)
+    plot_acf(X, ax=plt.gca())
+    plt.subplot(212)
+    plot_pacf(X, ax=plt.gca())
+
+    if save:
+      if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+      plt.savefig(output_dir + 'ACF-PACF')
+    plt.close()
+
+  #plot differenced data
+  predictions = pd.Series(predictions)
+  predictions.index = test.index
+  title = '-'.join(['Forecasted vs. Actual Number of Rides',station])
+  title = ','.join([title,''.join(['RMSE=',str(rmse)])])
+  test.reset_index(drop=True)
+  plt.figure(figsize = (15,9))
+  plt.plot(train,color='blue')
+  plt.plot(predictions,color='orange',label='predicted')
+  plt.plot(test,color='green',label='observed')
+  plt.xlabel('Day')
+  plt.ylabel('Number of Rides')
+  plt.title(title)
+  plt.legend(loc=4)
+  plt.tight_layout()
+
+  if save:
+    if not os.path.exists(output_dir):
+      os.makedirs(output_dir)
+    plt.savefig(output_dir + 'Forecasted')
+  plt.close()
+
   return rmse
 
 def grid_search_rmse(df,p_vals,d_vals,q_vals):
+  '''Performs gridsearch within defined range to find best
+  parameters for ARIMA on the data in df
+  Args:
+    - df          (DataFrame): DataFrame with features for training
+    - p_vals      (Range)    : Range of values to test for ARIMA p parameter
+    - d_vals      (Range)    : Range of values to test for ARIMA d parameter
+    - q_test      (Range)    : Range of values to test for ARIMA q parameter
+  '''
   rmse_list = []
   rmse_lowest = float('inf')
   params = ()
@@ -264,17 +304,20 @@ if __name__ == '__main__':
     (df['age'] <= 70) &
     (df['duration'] <= 2000)]
 
+  arima_dir = output_dir + 'ARIMA/'
   df['date'] = df['start_time'].dt.day
   df.sort_values(['year','month_num','date'],inplace=True)
-  station = 'Powell St BART Station'
-  temp =df[df['start_station_name']== station]
-  temp = temp.groupby(['year','month_num','date'])['bike_id'].count().reset_index(name='rides')
-  temp['date'] = temp['year'].map(str)+'-'+temp['month_num'].map(str)+'-'+temp['date'].map(str)
+  station = 'The Embarcadero at Sansome St'
+  station_df = df[df['start_station_name']== station]
+  station_df = station_df.groupby(['start_station_name','year','month_num','date'])['bike_id'].count().reset_index(name='rides')
+  station_df['date'] = station_df['year'].map(str)+'-'+station_df['month_num'].map(str)+'-'+station_df['date'].map(str)
 
   p_vals = range(0,8)
   d_vals = range(0,3)
   q_vals = range(0,2)
-  (p,d,q) = grid_search_rmse(df,p_vals,d_vals,q_vals)
+  arima_dir += station + '/'
+  (p,d,q) = grid_search_rmse(station_df,p_vals,d_vals,q_vals)
+  arima_model(station_df,p,d,q,arima_dir,save=True,verbose=True)
 
   sys.exit()
 
