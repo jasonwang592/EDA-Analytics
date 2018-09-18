@@ -2,15 +2,18 @@ import numpy as np
 import pickle
 import pandas as pd
 import analysis
-import sys
 import os
+import matplotlib.pyplot as plt
+from sklearn.ensemble import RandomForestClassifier
+import seaborn as sns
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import precision_score
+from sklearn.metrics import recall_score
 from sklearn import preprocessing
 from sklearn import tree
 from sklearn import ensemble
 from sklearn.metrics import confusion_matrix
 from imblearn.over_sampling import SMOTE
-import matplotlib.pyplot as plt
 from sklearn import linear_model
 from sklearn.metrics import mean_squared_error
 from math import sqrt
@@ -29,12 +32,12 @@ def downsample(df,features,target):
   Args:
     - df      (DataFrame): The DataFrame with unbalanced target variables
     - features(list)     : List of features we want to keep
-    - target  (String)   : The column name of the unbalance target variable
+    - target  (String)   : The column name of the unbalanced target variable
   '''
-  over_count = df[target].value_counts()[0]
-  under_count = df[target].value_counts()[1]
   over_label = df[target].value_counts().idxmax()
   under_label = df[target].value_counts().idxmin()
+  over_count = df[target].value_counts()[over_label]
+  under_count = df[target].value_counts()[under_label]
 
   df_over = df[df[target]==over_label]
   df_under = df[df[target]==under_label]
@@ -68,9 +71,6 @@ def upsample(df,features,target):
   X_train, y_train = sm.fit_sample(X_train,y_train)
   return X_train,X_test,y_train,y_test
 
-def fit_forest():
-  clf_rf = RandomForestClassifier(n_estimators=25, random_state=12)
-
 def fit_tree(X_train,X_test,y_train,y_test,output_dir,filename=None,show_confusion=True):
   '''Splits DataFrame into train and test sets. Fits a decision tree model
   and uses the model to predict on test set
@@ -83,24 +83,33 @@ def fit_tree(X_train,X_test,y_train,y_test,output_dir,filename=None,show_confusi
     - filename    (String)   : Name of file to write confusion matrix to
     - show_matrix (Boolean)  : Shows the confusion matrix if true
   '''
-  print('Fitting tree...')
   clf = tree.DecisionTreeClassifier()
   clf.fit(X=X_train,y=y_train)
-  print('Validation accuracy: ' + str(clf.score(X=X_test,y=y_test)))
+  print('Validation accuracy:{:.4f}'.format(clf.score(X=X_test,y=y_test)))
 
   y_pred = clf.predict(X_test)
-  if show_confusion:
-    conf_matrix = confusion_matrix(y_true=y_test,y_pred=y_pred)
+  conf_matrix = confusion_matrix(y_true=y_test,y_pred=y_pred)
+  if "Subscriber" in y_train:
     labels = ['Customer','Subscriber']
-    fig = plt.figure()
-    ax = plt.subplot(111)
-    cax = ax.matshow(conf_matrix, cmap=plt.cm.Blues)
-    fig.colorbar(cax)
-    ax.set_xticklabels([''] + labels)
-    ax.set_yticklabels([''] + labels)
-    plt.xlabel('Predicted')
-    plt.ylabel('Expected')
-    plt.tight_layout()
+  else:
+    labels = ['Male','Female']
+  acc = "accuracy:{:.4f}".format(clf.score(X_test,y_test))
+  prec = "precision:{:.4f}".format(precision_score(y_pred,y_test))
+  rec = "recall:{:.4f}".format(recall_score(y_pred,y_test))
+  text = '\n'.join([acc,prec,rec])
+
+  fig = plt.figure(figsize = (15,9))
+  ax = plt.subplot(111)
+  cax = ax.matshow(conf_matrix, cmap=plt.cm.Blues)
+  fig.colorbar(cax)
+  ax.text(-1,0,text)
+  ax.set_xticklabels([''] + labels)
+  ax.set_yticklabels([''] + labels)
+  plt.xlabel('Predicted')
+  plt.ylabel('Expected')
+  plt.title(filename)
+  plt.tight_layout()
+  if show_confusion:
     plt.show()
   else:
     if not filename:
@@ -111,38 +120,59 @@ def fit_tree(X_train,X_test,y_train,y_test,output_dir,filename=None,show_confusi
   plt.close()
   return clf
 
-def tree_classifier(df):
-  #Tree based models for classification of gender or user type
-  #target variable should either be user_type or gender
-  tree_df = df.copy()
+def tree_classifier(df,features,target,output_dir):
+  '''Performs classification using a decision tree with upsampling/downsampling
+  Args:
+    - tree_df     (DataFrame): DataFrame containing data
+    - features    (List)     : List of features to use for prediction
+    - target      (String)   : Name of the target to classify
+    - output_dir  (String)   : Output directory to write results to
+  '''
   print('Encoding categorical variables...')
+  tree_df = df.copy()
+  if target == 'gender':
+    tree_df = tree_df.loc[tree_df['gender']!='Other']
   le = preprocessing.LabelEncoder()
-  for col in ['gender','day_of_week']:
+  for col in ['gender','day_of_week','user_type']:
     le.fit(df[col])
     tree_df[col] = le.transform(tree_df[col])
-
-  features = ['duration','start_hour','day_of_week']
-  target = 'user_type'
-
+  print('Majority to minority ratio:{:.4f}'.format((tree_df[target].value_counts().tolist()[0])/(tree_df.shape[0])))
+  #Use the opposite of the provided target as an additional feature
   if target == 'user_type':
     features.append('gender')
+    output_dir = output_dir + 'UserTypeClassification/'
   else:
     features.append('user_type')
+    output_dir = output_dir + 'GenderClassification/'
 
   X_train,X_test,y_train,y_test = train_test_split(
     tree_df[features],
     tree_df[target],
     test_size=.3,
-    random_state=21)
+    random_state=24)
+
+  print('Fitting unbalanced tree...')
+  clf = fit_tree(X_train,X_test,y_train,y_test,output_dir,filename='Unbalanced',show_confusion=False)
+  preds = clf.predict(X_test)
+  print("Unbalanced test accuracy:{:.4f}".format(clf.score(X_test,y_test)))
+  print("Unbalanced precision:{:.4f}".format(precision_score(preds,y_test)))
+  print("Unbalanced recall:{:.4f}".format(recall_score(preds,y_test)))
 
   df_train = pd.concat([X_train,y_train],axis=1)
   X_train,X_val,y_train,y_val = downsample(df_train,features,target)
-  clf = fit_tree(X_train,X_val,y_train,y_val,output_dir)
-  print("Downsampling test accuracy: " + str(clf.score(X_test,y_test)))
+  print('Fitting downsampled tree...')
+  clf = fit_tree(X_train,X_val,y_train,y_val,output_dir,filename='Downsampled',show_confusion=False)
+  preds = clf.predict(X_test)
+  print("Downsampling test accuracy:{:.4f}".format(clf.score(X_test,y_test)))
+  print("Downsampling precision:{:.4f}".format(precision_score(preds,y_test)))
+  print("Downsampling recall:{:.4f}".format(recall_score(preds,y_test)))
 
   X_train,X_val,y_train,y_val = upsample(df_train,features,target)
-  clf = fit_tree(X_train,X_test,y_train,y_test,output_dir)
-  print("Upsampling test accuracy: " + str(clf.score(X_test,y_test)))
+  print('Fitting upsampled tree...')
+  clf = fit_tree(X_train,X_test,y_train,y_test,output_dir,filename='Upsampled',show_confusion=False)
+  print("Upsampling test accuracy:{:.4f}".format(clf.score(X_test,y_test)))
+  print("Upsampling precision:{:.4f}".format(precision_score(preds,y_test)))
+  print("Upsampling recall:{:.4f}".format(recall_score(preds,y_test)))
 
 def difference(df):
   diff = list()
@@ -161,7 +191,7 @@ def arima_model(df,p,d,q,output_dir=None,save=False,verbose=False,baseline=False
     - output_dir  (String)   : Output directory to save graphs to
     - plot        (Boolean)  : Shows plots if true
     - verbose     (Boolean)  : Prints each line of prediction if true
-    - baseline    (Boolean)  : Predicts baseline of lag 1
+    - baseline    (Boolean)  : Predicts baseline with lag 1
   '''
   station = str(df['start_station_name'].unique()[0])
   df = pd.Series(df['rides'])
@@ -184,7 +214,6 @@ def arima_model(df,p,d,q,output_dir=None,save=False,verbose=False,baseline=False
   #walk-forward validation
   history = list(train)
   predictions = list()
-  baseline = False
   for i in range(len(test)):
     # predict
     if baseline:
@@ -192,13 +221,13 @@ def arima_model(df,p,d,q,output_dir=None,save=False,verbose=False,baseline=False
     else:
       model = ARIMA(history, order=(p,d,q))
       model_fit = model.fit(disp=0)
-      pred = model_fit.forecast()[0]
+      pred = model_fit.forecast()[0][0]
     predictions.append(pred)
     # observation
     act = test.iloc[i]
     history.append(act)
     if verbose:
-      print('>Predicted={:.3f}, Expected={:.3f}'.format(pred[0],act))
+      print('>Predicted={:.3f}, Expected={:.3f}'.format(pred,act))
 
   #print performance
   rmse = sqrt(mean_squared_error(test, predictions))
@@ -293,6 +322,29 @@ def grid_search_rmse(df,p_vals,d_vals,q_vals):
   print('Best ARIMA params: p={:d}, d={:d}, q={:d}'.format(params[0],params[1],params[2]))
   return params[0],params[1],params[2]
 
+def eval_arima(df,station,output_dir):
+  '''Performs gridsearch within defined range to find best
+  parameters for ARIMA on the data in df
+  Args:
+    - df          (DataFrame): DataFrame all data
+    - station     (String)   : Name of the station to perform time series analysis on
+    - output_dir  (Strin)    : Output to write ARIMA results to
+  '''
+
+  arima_dir = output_dir + 'ARIMA/'
+  df['date'] = df['start_time'].dt.day
+  df.sort_values(['year','month_num','date'],inplace=True)
+  station_df = df[df['start_station_name']==station]
+  station_df = station_df.groupby(['start_station_name','year','month_num','date'])['bike_id'].count().reset_index(name='rides')
+  station_df['date'] = station_df['year'].map(str)+'-'+station_df['month_num'].map(str)+'-'+station_df['date'].map(str)
+
+  p_vals = range(0,8)
+  d_vals = range(0,3)
+  q_vals = range(0,2)
+  arima_dir += station + '/'
+  (p,d,q) = grid_search_rmse(station_df,p_vals,d_vals,q_vals)
+  arima_model(station_df,p,d,q,arima_dir,save=True,verbose=True)
+
 if __name__ == '__main__':
   df = analysis.pickler()
 
@@ -304,68 +356,10 @@ if __name__ == '__main__':
     (df['age'] <= 70) &
     (df['duration'] <= 2000)]
 
-  arima_dir = output_dir + 'ARIMA/'
-  df['date'] = df['start_time'].dt.day
-  df.sort_values(['year','month_num','date'],inplace=True)
-  station = 'The Embarcadero at Sansome St'
-  station_df = df[df['start_station_name']== station]
-  station_df = station_df.groupby(['start_station_name','year','month_num','date'])['bike_id'].count().reset_index(name='rides')
-  station_df['date'] = station_df['year'].map(str)+'-'+station_df['month_num'].map(str)+'-'+station_df['date'].map(str)
+  # Tree based classification of gender or user type
+  tree_classifier(df,['duration','start_hour','day_of_week','age'],'gender',output_dir)
 
-  p_vals = range(0,8)
-  d_vals = range(0,3)
-  q_vals = range(0,2)
-  arima_dir += station + '/'
-  (p,d,q) = grid_search_rmse(station_df,p_vals,d_vals,q_vals)
-  arima_model(station_df,p,d,q,arima_dir,save=True,verbose=True)
-
-  sys.exit()
-
-  #Linear Model
-  grouped_df = df.groupby(['start_hour','start_station_name','day_of_week'])['bike_id'].count().reset_index(name='rides')
-  y = grouped_df['rides']
-  temp = grouped_df[grouped_df['start_station_name']=='Powell St BART Station']
-  sns.pairplot(temp)
-  plt.show()
-  X = grouped_df.drop('rides',axis=1)
-  X = pd.get_dummies(X)
-
-  X_train,X_test,y_train,y_test = train_test_split(
-    X,
-    y,
-    test_size=.3,
-    random_state=21)
-
-  lm = linear_model.LinearRegression()
-  lm.fit(X,y)
-  preds = lm.predict(X)
-  print(preds[0:5],y[0:5])
-  print(lm.score(X,y))
-  sys.exit()
-
-  # #GLM model for ride duration
-  # features = ['start_hour','day_of_week','user_type','gender','age','start_station_name']
-  # glm_df = df.copy()
-  # print('Encoding categorical variables...')
-  # le = preprocessing.LabelEncoder()
-  # for col in ['day_of_week','user_type','gender','start_station_name']:
-  #   le.fit(glm_df[col])
-  #   glm_df[col] = le.transform(glm_df[col])
-  # y = glm_df['duration']
-
-  # print('One hot encoding variables...')
-  # glm_df = glm_df[features]
-  # one_hot_cols = ['start_station_name','gender','day_of_week','start_hour']
-  # X = pd.get_dummies(glm_df,prefix=one_hot_cols,columns=one_hot_cols)
-
-  # X_train,X_test,y_train,y_test = train_test_split(
-  #   X,
-  #   y,
-  #   test_size=.3,
-  #   random_state=21)
-  # glm = linear_model.LinearRegression()
-  # glm.fit(X,y)
-  # preds = glm.predict(X)
-  # print(preds[0:5],y[0:5])
-  # print(glm.score(X,y))
+  STATION_NAME = 'San Francisco Ferry Building'
+  #Perform time series analysis and ARIMA on given station
+  eval_arima(df,STATION_NAME,output_dir)
 

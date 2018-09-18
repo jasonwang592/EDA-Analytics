@@ -4,16 +4,216 @@
 		"selected_items":
 		[
 			[
+				"pick",
+				"pickler\tfunction"
+			],
+			[
+				"sort",
+				"sort_values"
+			],
+			[
+				"route",
+				"route_df"
+			],
+			[
+				"output",
+				"output_dir\tstatement"
+			],
+			[
+				"group",
+				"groupby"
+			],
+			[
+				"age",
+				"age_lim"
+			],
+			[
+				"box_x",
+				"box_xlab"
+			],
+			[
+				"dis",
+				"distribution_analysis"
+			],
+			[
+				"agerange",
+				"age_range"
+			],
+			[
+				"grouped",
+				"grouped_gender\tstatement"
+			],
+			[
+				"hour",
+				"hour_sum_bars\tfunction"
+			],
+			[
+				"split",
+				"split_user"
+			],
+			[
+				"joint",
+				"joint_df\tstatement"
+			],
+			[
+				"user",
+				"user_type"
+			],
+			[
+				"save",
+				"save_run\tstatement"
+			],
+			[
+				"net",
+				"net_bikes"
+			],
+			[
+				"topdef",
+				"top_deficit\tstatement"
+			],
+			[
+				"ordere",
+				"ordered_days\tstatement"
+			],
+			[
+				"forma",
+				"formatted_date"
+			],
+			[
+				"month",
+				"month_num"
+			],
+			[
+				"joi",
+				"joint_df"
+			],
+			[
+				"join",
+				"joint_df\tstatement"
+			],
+			[
+				"start",
+				"start_df\tstatement"
+			],
+			[
+				"monthyear",
+				"month_year_df\tstatement"
+			],
+			[
+				"day",
+				"day_index"
+			],
+			[
+				"days",
+				"days_num\tstatement"
+			],
+			[
+				"star",
+				"start_time"
+			],
+			[
+				"end",
+				"end_station_longitude"
+			],
+			[
+				"endsta",
+				"end_station_latitude"
+			],
+			[
+				"stat",
+				"start_station_longitude"
+			],
+			[
+				"pickl",
+				"pickle_name"
+			],
+			[
+				"pi",
+				"pickle_name\tstatement"
+			],
+			[
+				"data",
+				"data_dir\tstatement"
+			],
+			[
+				"read_",
+				"read_csv\tfunction"
+			],
+			[
+				"lastfi",
+				"last_five_male\tstatement"
+			],
+			[
+				"wav",
+				"wavg_female\tstatement"
+			],
+			[
+				"wave",
+				"wavg_male\tstatement"
+			],
+			[
+				"name",
+				"name_gender"
+			],
+			[
+				"ge",
+				"gender"
+			],
+			[
+				"as",
+				"ascending\tparam"
+			],
+			[
+				"filter",
+				"filter_df\tstatement"
+			],
+			[
+				"topnname",
+				"top_n_shared_names\tstatement"
+			],
+			[
+				"gender",
+				"gender_group"
+			],
+			[
+				"gen",
+				"gender_group\tstatement"
+			],
+			[
+				"common",
+				"common_df\tstatement"
+			],
+			[
+				"male",
+				"male_names\tstatement"
+			],
+			[
+				"female",
+				"female_names\tstatement"
+			],
+			[
+				"fe",
+				"female_names\tstatement"
+			],
+			[
+				"new",
+				"new_index"
+			],
+			[
+				"all",
+				"all_names"
+			],
+			[
+				"out",
+				"output_dir\tparam"
+			],
+			[
 				"years",
 				"year_test\tstatement"
 			],
 			[
 				"namegen",
 				"name_gender_age\tstatement"
-			],
-			[
-				"name",
-				"name_gender_age"
 			],
 			[
 				"bigqu",
@@ -26,10 +226,6 @@
 			[
 				"read",
 				"read_csv\tfunction"
-			],
-			[
-				"output",
-				"output_dir\tstatement"
 			],
 			[
 				"outp",
@@ -132,10 +328,6 @@
 				"feature2\tparam"
 			],
 			[
-				"save",
-				"savefig\tfunction"
-			],
-			[
 				"mak",
 				"makedirs\tfunction"
 			],
@@ -166,10 +358,6 @@
 			[
 				"set",
 				"set_style\tfunction"
-			],
-			[
-				"out",
-				"output_dir\tstatement"
 			],
 			[
 				"ma",
@@ -212,10 +400,6 @@
 				"metric_name\tparam"
 			],
 			[
-				"gender",
-				"gender_list\tstatement"
-			],
-			[
 				"geocode",
 				"geocode_result\tstatement"
 			],
@@ -232,10 +416,6 @@
 				"output_path"
 			],
 			[
-				"all",
-				"all_genders"
-			],
-			[
 				"st",
 				"state_df"
 			],
@@ -244,16 +424,8 @@
 				"sg_df"
 			],
 			[
-				"age",
-				"age_agg_df"
-			],
-			[
 				"sa",
 				"sga_df"
-			],
-			[
-				"stat",
-				"state_gender_df"
 			],
 			[
 				"state",
@@ -286,10 +458,6 @@
 			[
 				"ass",
 				"assertEqual\tfunction"
-			],
-			[
-				"as",
-				"assertIn\tfunction"
 			],
 			[
 				"tup",
@@ -346,204 +514,58 @@
 			[
 				"hea",
 				"heatplot"
-			],
-			[
-				"if",
-				"ifmain\tif __name__ == '__main__'"
-			],
-			[
-				"br",
-				"browser"
-			],
-			[
-				"string",
-				"stringToByte\tfunction"
-			],
-			[
-				"byte",
-				"byteToBit"
-			],
-			[
-				"ladd",
-				"ladderLength"
-			],
-			[
-				"next",
-				"nextlevel"
-			],
-			[
-				"net",
-				"nextlevel"
-			],
-			[
-				"lInd",
-				"l1Ind"
-			],
-			[
-				"pow",
-				"powerOfTwo\tfunction"
-			],
-			[
-				"coo",
-				"greedCookies"
-			],
-			[
-				"count",
-				"countDict"
-			],
-			[
-				"min",
-				"minInd"
-			],
-			[
-				"max",
-				"maxNum"
-			],
-			[
-				"ladderClimb",
-				"ladderClimbRecursive"
-			],
-			[
-				"la",
-				"ladderClimb"
-			],
-			[
-				"binar",
-				"binarySearchRotated"
-			],
-			[
-				"let",
-				"letter\tforstmt"
-			],
-			[
-				"letter",
-				"letterDict"
-			],
-			[
-				"sub",
-				"substring_count"
-			],
-			[
-				"group",
-				"group_dishes"
-			],
-			[
-				"oncei",
-				"once_integer_sorted"
-			],
-			[
-				"filter",
-				"filter_df"
-			],
-			[
-				"Non",
-				"Non_Payment"
-			],
-			[
-				"evi",
-				"evic_reasons"
-			],
-			[
-				"evc",
-				"evic_array"
-			],
-			[
-				"evic",
-				"evic_matrix"
-			],
-			[
-				"n",
-				"Neighborhood"
-			],
-			[
-				"reason",
-				"reason_array"
-			],
-			[
-				"reas",
-				"reason_array"
-			],
-			[
-				"sorted",
-				"sorted_cont"
-			],
-			[
-				"tpos",
-				"t_pos_words"
-			],
-			[
-				"can",
-				"candidate\tparam"
-			],
-			[
-				"word",
-				"word_index"
-			],
-			[
-				"sentei",
-				"sentiment_words"
-			],
-			[
-				"key",
-				"keywords"
-			],
-			[
-				"positi",
-				"positive-words.txt"
-			],
-			[
-				"tf_d",
-				"tf_idf\t(tfidf_helper.py)"
-			],
-			[
-				"senti",
-				"sentiment_chart"
-			],
-			[
-				"hpos",
-				"h_pos_words"
-			],
-			[
-				"candi",
-				"candidate_text"
-			],
-			[
-				"cand",
-				"candidate_text"
-			],
-			[
-				"tneg",
-				"t_neg_words"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "USA_Names/USA_Names_EDA.py",
+			"file": "Ford_GoBike/analysis.py",
 			"settings":
 			{
-				"buffer_size": 1791,
+				"buffer_size": 19704,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "import seaborn as sns\nimport os\nimport matplotlib.pyplot as plt\nimport pandas as pd\nplt.style.use('fivethirtyeight')\n\n\ndef heatmapper(df, gender, output_dir, save = True):\n  result = df.pivot(index = 'name', columns = 'decade', values = 'number')\n  fig = plt.figure(figsize = (15, 9))\n  fig = sns.heatmap(result, cmap = 'YlGnBu')\n  plt.xticks(rotation = 90)\n  plt.title(''.join['Top', len(df['name'].unique()), gender, 'Names'])\n\n  if save:\n    if not os.path.exists(output_dir):\n      os.makedirs(output_dir)\n    plt.savefig(output_dir + ','.join(['PCA Cumulative Variance', str(df.shape[1]) + ' components']))\n  else:\n    plt.show()\n  plt.close()\n\ndef namePopularity(df, name, output_dir, save = True):\n  '''\n  \n  filter_df = df[df['name'] == name]\n  years = pd.DataFrame({'year': sorted(filter_df['year'].unique())})\n\n  males = filter_df[filter_df['gender'] == 'Male'].sort_values('year')\n  females = filter_df[filter_df['gender'] == 'Female'].sort_values('year')\n\n  males = pd.merge(years, males[['year', 'number']], how = 'left').fillna(0)\n  females = pd.merge(years, females[['year', 'number']], how = 'left').fillna(0)\n\n  fig = plt.figure(figsize = (15,9))\n  ax = fig.add_subplot(111)\n\n  ax.plot(years, males['number'])\n  ax.plot(years, females['number'])\n  plt.title(''.join('Popularity of the name', name, 'since 1900'))\n  if save:\n    if not os.path.exists(output_dir):\n      os.makedirs(output_dir)\n    plt.savefig(output_dir + ','.join(['PCA Cumulative Variance', str(df.shape[1]) + ' components']))\n  else:\n    plt.show()\n  plt.close()",
-			"file": "USA_Names/plotting.py",
-			"file_size": 1535,
-			"file_write_time": 131739475950000000,
+			"file": "Ford_GoBike/predict.py",
 			"settings":
 			{
-				"buffer_size": 1548,
+				"buffer_size": 1914,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"line_ending": "Unix",
+				"name": "import"
 			}
 		}
 	],
-	"build_system": "",
+	"build_system": "Packages/User/Python3.sublime-build",
 	"build_system_choices":
 	[
+		[
+			[
+				[
+					"Anaconda Python Builder",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				],
+				[
+					"Packages/User/Python3.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/User/Python3.sublime-build",
+				""
+			]
+		],
 		[
 			[
 				[
@@ -569,6 +591,34 @@
 		"selected_items":
 		[
 			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"git change",
+				"Git: Change Branch"
+			],
+			[
+				"git c",
+				"Git: Commit"
+			],
+			[
+				"git add fil",
+				"Git: Add Current File"
+			],
+			[
+				"dis ",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"git new b",
+				"Git: New Branch"
+			],
+			[
 				"git push",
 				"Git: Push"
 			],
@@ -577,7 +627,15 @@
 				"Git: Commit"
 			],
 			[
+				"git ad al",
+				"Git: Add All"
+			],
+			[
 				"git add",
+				"Git: Add All"
+			],
+			[
+				"git add al",
 				"Git: Add All"
 			],
 			[
@@ -585,20 +643,176 @@
 				"Git: Commit"
 			],
 			[
-				"git ",
-				"Git: Diff Tool All"
+				"git pu",
+				"Git: Push"
 			],
 			[
-				"git ad",
+				"Snippet: ",
+				"Snippet: Function"
+			],
+			[
+				"git ",
+				"Git: Update Project Ignored Files"
+			],
+			[
+				"git compare",
+				"GitGutter: Compare Against Origin"
+			],
+			[
+				"git comp",
+				"GitGutter: Compare Against Commit"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"git",
+				"Git: Toggle Annotations"
+			],
+			[
+				"git add all",
 				"Git: Add All"
 			],
 			[
-				"lintin",
+				"git compa",
+				"GitGutter: Compare Against HEAD"
+			],
+			[
+				"git quick",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"disba",
 				"Anaconda: Disable linting on this file"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"disal",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"remove pac",
+				"Package Control: Remove Package"
+			],
+			[
+				"dis lin",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"disa",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"git ignir",
+				"Gitignore: New gitignore"
+			],
+			[
+				"git commi",
+				"Git: Commit history"
+			],
+			[
+				"git commit",
+				"Git: Commit history"
+			],
+			[
+				"git unsta",
+				"Git: Reset (unstage) All"
+			],
+			[
+				"git reset",
+				"Git: Reset (hard) HEAD"
+			],
+			[
+				"git ad",
+				"GitGutter: Compare Against HEAD"
+			],
+			[
+				"git add f",
+				"Git: Add Current File"
+			],
+			[
+				"git set ign",
+				"Set Syntax: Git Ignore"
+			],
+			[
+				"git igno",
+				"Set Syntax: Git Ignore"
+			],
+			[
+				"git ignore",
+				"Set Syntax: Git Ignore"
+			],
+			[
+				"git add cu",
+				"Git: Add Current File"
+			],
+			[
+				" git add",
+				"Git: Add..."
+			],
+			[
+				"git un",
+				"Git: Reset (unstage) All"
 			],
 			[
 				"git diff",
 				"Git: Diff All Files"
+			],
+			[
+				"intsall",
+				"Package Control: Install Package"
+			],
+			[
+				"install p",
+				"Package Control: Install Package"
+			],
+			[
+				"gitad",
+				"Git: Add All"
+			],
+			[
+				"linting",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"git ad a",
+				"Git: Add All"
+			],
+			[
+				"intsall pa",
+				"Package Control: Install Package"
+			],
+			[
+				"package remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"git add ",
+				"Git: Add All"
+			],
+			[
+				"git ad all",
+				"Git: Add All"
+			],
+			[
+				" git push",
+				"Git: Push"
+			],
+			[
+				"git add c",
+				"Git: Add Current File"
+			],
+			[
+				"git dif",
+				"Git: Diff All Files"
+			],
+			[
+				"lintin",
+				"Anaconda: Disable linting on this file"
 			],
 			[
 				"add all",
@@ -633,16 +847,8 @@
 				"Anaconda: Disable linting on this file"
 			],
 			[
-				"git add al",
-				"Git: Add All"
-			],
-			[
 				"git de",
 				"Git: Delete Branch"
-			],
-			[
-				"git change",
-				"Git: Change Branch"
 			],
 			[
 				"git delete",
@@ -673,10 +879,6 @@
 				"Git: New Branch"
 			],
 			[
-				"disa",
-				"Anaconda: Disable linting on this file"
-			],
-			[
 				"git ada",
 				"Git: Add All"
 			],
@@ -693,20 +895,8 @@
 				"Gitignore: New gitignore"
 			],
 			[
-				"instal",
-				"Package Control: Install Package"
-			],
-			[
 				"git resert",
 				"Git: Reset (unstage) Current File"
-			],
-			[
-				"git ignore",
-				"Git: Update Project Ignored Files"
-			],
-			[
-				"git un",
-				"Git: Reset (unstage) All"
 			],
 			[
 				"git unstance",
@@ -729,14 +919,6 @@
 				"Git: Status"
 			],
 			[
-				"git dif",
-				"Git: Diff Current File"
-			],
-			[
-				"git pu",
-				"Git: Pull Using Rebase"
-			],
-			[
 				"git stash",
 				"Git: Stash Changes"
 			],
@@ -745,15 +927,7 @@
 				"GitGutter: Revert Change to Commit"
 			],
 			[
-				"install ",
-				"Package Control: Install Package"
-			],
-			[
 				"install pack",
-				"Package Control: Install Package"
-			],
-			[
-				"install",
 				"Package Control: Install Package"
 			],
 			[
@@ -773,10 +947,6 @@
 				"Git: Add All"
 			],
 			[
-				"git unsta",
-				"Git: Reset (unstage) Current File"
-			],
-			[
 				"git update",
 				"Git: Update Project Ignored Files"
 			],
@@ -793,14 +963,6 @@
 				"Git: Change Branch"
 			],
 			[
-				"git add cu",
-				"Git: Add Current File"
-			],
-			[
-				"git add c",
-				"Git: Add Current File"
-			],
-			[
 				"lin",
 				"Anaconda: Disable linting on this file"
 			],
@@ -811,10 +973,6 @@
 			[
 				"git cahnge",
 				"Git: Change Branch"
-			],
-			[
-				"remove",
-				"Package Control: Remove Package"
 			],
 			[
 				"remove package",
@@ -877,16 +1035,8 @@
 				"GitGutter: Support Info"
 			],
 			[
-				"git",
-				"Git: Add All"
-			],
-			[
 				"ling",
 				"Anaconda: Disable linting on this file"
-			],
-			[
-				"git c",
-				"Git: Commit"
 			],
 			[
 				"git st",
@@ -913,10 +1063,6 @@
 				"Git: Fetch"
 			],
 			[
-				"git commit",
-				"Git: Commit"
-			],
-			[
 				"reset",
 				"Git: Reset (unstage) All"
 			],
@@ -941,10 +1087,6 @@
 				"Git: Init"
 			],
 			[
-				"disba",
-				"Package Control: Disable Package"
-			],
-			[
 				"disab",
 				"Anaconda: Disable linting on this file"
 			],
@@ -959,126 +1101,6 @@
 			[
 				"custom",
 				"Git: Custom Command"
-			],
-			[
-				"git custom",
-				"Git: Custom Command"
-			],
-			[
-				"com",
-				"Git: Commit"
-			],
-			[
-				"staged",
-				"Git: Diff Staged Files"
-			],
-			[
-				"git cus",
-				"Git: Custom Command"
-			],
-			[
-				"push",
-				"Git: Push"
-			],
-			[
-				"commi",
-				"Git: Commit"
-			],
-			[
-				"ad",
-				"Git: Add Current File"
-			],
-			[
-				"commit",
-				"Git: Commit"
-			],
-			[
-				"branch",
-				"Git: New Branch"
-			],
-			[
-				"git igno",
-				"Git: Update Project Ignored Files"
-			],
-			[
-				"dis lin",
-				"Anaconda: Disable linting on this file"
-			],
-			[
-				"git chan",
-				"Git: Change Branch"
-			],
-			[
-				"git stat",
-				"Git: Status"
-			],
-			[
-				"git chekc",
-				"Git: Checkout Current File"
-			],
-			[
-				"revert",
-				"File: Revert"
-			],
-			[
-				"gs",
-				"Git: Status"
-			],
-			[
-				"change ",
-				"Git: Change Branch"
-			],
-			[
-				"add ",
-				"Git: Add Current File"
-			],
-			[
-				"instl",
-				"Package Control: Install Package"
-			],
-			[
-				"git commi",
-				"Git: Commit"
-			],
-			[
-				"git reb",
-				"Git: Pull Using Rebase"
-			],
-			[
-				"git pull",
-				"Git: Pull"
-			],
-			[
-				"cust",
-				"Git: Custom Command"
-			],
-			[
-				"cu",
-				"Git: Custom Command"
-			],
-			[
-				"c",
-				"Git: Change Branch"
-			],
-			[
-				"git cust",
-				"Git: Custom Command"
-			],
-			[
-				"delete",
-				"Git: Delete Branch"
-			],
-			[
-				"ch",
-				"Git: Change Branch"
-			],
-			[
-				"merge",
-				"Git: Merge Branch"
-			],
-			[
-				"git res",
-				"Git: Reset (unstage) All"
 			]
 		],
 		"width": 424.0
@@ -1102,11 +1124,24 @@
 	"expanded_folders":
 	[
 		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles",
-		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles/USA_Names"
+		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles/Ford_GoBike",
+		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles/Ford_GoBike/output"
 	],
 	"file_history":
 	[
+		"/Users/jason.wang/Library/Application Support/Sublime Text 3/Packages/User/python3.sublime-build",
+		"/Applications/Sublime Text.app/Contents/MacOS/Packages/Python.sublime-package",
+		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles/Ford_GoBike/plotting.py",
+		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles/Ford_GoBike/output/Ridership by User Type and Month.png",
+		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles/.gitignore",
+		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles/Ford_GoBike/analysis.py",
+		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles/Ford_GoBike/.gitignore",
+		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles/Ford_GoBike/untitled.py",
+		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles/Ford_GoBike/untitled",
+		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles/USA_Names/USA_Names_EDA.py",
 		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles/USA_Names/plotting.py",
+		"/Users/jason.wang/Desktop/OTS_dump.txt",
+		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles/USA_Names/output/NamePopularityLinePlots/Benjamin.png",
 		"/Users/jason.wang/Documents/Analytics Projects/EDA-articles/USA_Names/test.py",
 		"/Users/jason.wang/Documents/USA_Names_EDA.py",
 		"/Users/jason.wang/Documents/Analytics Projects/Pulse-of-the-Nation/Sept_Analysis.py",
@@ -1210,7 +1245,7 @@
 	],
 	"find":
 	{
-		"height": 24.0
+		"height": 41.0
 	},
 	"find_in_files":
 	{
@@ -1224,6 +1259,30 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"numerical_df",
+			"print",
+			"np.",
+			"np",
+			"mdates",
+			"sys.exit",
+			"hour_su",
+			"suffix",
+			"loc",
+			"joint_df",
+			"datetime",
+			"temp",
+			"user_dayofweek",
+			"start_station_latitude",
+			"last_five_female",
+			"last_five_male",
+			"wavg_male",
+			"common_male",
+			"wavg",
+			"wav",
+			"Male",
+			"suffix",
+			"top_shared_names",
+			"top_n_shared_names",
 			"year_test",
 			"top50_female_names",
 			"top50_f3emale_names",
@@ -1238,8 +1297,10 @@
 		"regex": false,
 		"replace_history":
 		[
+			"df",
+			"weekday_df"
 		],
-		"reverse": true,
+		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
 		"whole_word": false,
@@ -1253,28 +1314,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "USA_Names/USA_Names_EDA.py",
+					"file": "Ford_GoBike/analysis.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1791,
+						"buffer_size": 19704,
 						"regions":
 						{
-							"bookmarks":
-							{
-								"flags": 144,
-								"icon": "bookmark",
-								"regions":
-								[
-								],
-								"scope": "bookmarks"
-							}
 						},
 						"selection":
 						[
 							[
-								686,
-								686
+								3211,
+								3211
 							]
 						],
 						"settings":
@@ -1316,13 +1368,56 @@
 								{
 									"characters": ".",
 									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
 								}
 							],
+							"complete_parameters": false,
+							"git_annotation_temp_buffer": "/var/folders/wf/m4p_q4dj5rzgyz904lgh3mwnjthks_/T/git_annotations_05st8n",
+							"git_annotation_temp_head": "/var/folders/wf/m4p_q4dj5rzgyz904lgh3mwnjthks_/T/git_annotations_ztzzr1",
 							"git_gutter_is_enabled": true,
+							"live_git_annotations": true,
+							"rulers":
+							[
+							],
 							"syntax": "Packages/Python/Python.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 259.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -1330,19 +1425,19 @@
 				},
 				{
 					"buffer": 1,
-					"file": "USA_Names/plotting.py",
+					"file": "Ford_GoBike/predict.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1548,
+						"buffer_size": 1914,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								713,
-								713
+								656,
+								656
 							]
 						],
 						"settings":
@@ -1358,11 +1453,12 @@
 									"selector": "source.python - string - constant.numeric"
 								}
 							],
+							"auto_name": "import",
 							"git_gutter_is_enabled": true,
 							"syntax": "Packages/Python/Python.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 183.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1404,7 +1500,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 188.0
+		"height": 227.0
 	},
 	"output.find_results":
 	{
@@ -1412,7 +1508,7 @@
 	},
 	"output.git":
 	{
-		"height": 163.0
+		"height": 145.0
 	},
 	"output.mdpopups":
 	{
@@ -1422,7 +1518,7 @@
 	"project": "EDA.sublime-project",
 	"replace":
 	{
-		"height": 44.0
+		"height": 78.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1484,7 +1580,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 293.0,
+	"side_bar_width": 263.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

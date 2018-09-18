@@ -299,7 +299,7 @@ def aggregate_plots(df):
     output_dir=output_dir+'Aggregates/',
     save=save_run)
   plotting.bar_wrapper(df=df.groupby('user_type')['bike_id'].count().reset_index(name='rides'),
-    x='user_typec',
+    x='user_type',
     y='rides',
     title='Rides by user type',
     xlab='User Type',
@@ -459,7 +459,7 @@ if __name__ == '__main__':
   grouped['formatted_date'] = grouped['month_num'].apply(lambda x: calendar.month_abbr[x]) + ' ' + grouped['year'].map(str)
   grouped = grouped.set_index('date')
 
-  fig = plt.figure(figsize = (15,10))
+  fig = plt.figure(figsize = (13,10))
   ax1 = grouped[grouped['user_type']=='Subscriber']['count'].plot(x_compat=True)
   ax2 = grouped[grouped['user_type']=='Customer']['count'].plot(x_compat=True)
   ax1.xaxis.set_major_locator(mdates.MonthLocator())
